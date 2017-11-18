@@ -30,7 +30,7 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|alpha',
+            'title' => 'required',
             'user_id' => 'required|exists:users,id',
             'location_id' => 'required|exists:locations,id'
         ]);
