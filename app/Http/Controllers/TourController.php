@@ -14,7 +14,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tour = Tour::latest()->get();
+        $tour = Tour::latest()->with('locations')->get();
 
         return $tour;
     }
@@ -54,7 +54,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return $tour;
+        return $tour->load('locations');
     }
 
 
