@@ -10,15 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('api/v1/activity', 'ActivityController@index');
-Auth::routes();
+
+Route::prefix('api/v1/')->group(function() {
+    Route::resource('activity', 'ActivityController');
+    Route::resource('location', 'LocationController');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-
 });
