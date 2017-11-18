@@ -971,6 +971,8 @@ module.exports = __webpack_require__(38);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_store__ = __webpack_require__(58);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -982,6 +984,7 @@ __webpack_require__(11);
 
 window.Vue = __webpack_require__(31);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -992,7 +995,8 @@ Vue.component('app', __webpack_require__(48));
 window.onload = function () {
 
   var app = new Vue({
-    el: '#app'
+    el: '#app',
+    store: __WEBPACK_IMPORTED_MODULE_0__store_store__["a" /* store */]
   });
 };
 
@@ -13141,6 +13145,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -13149,14 +13157,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    },
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
     components: {
-        'create-activity': __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default.a
+        activityCard: activityCard
+    },
+    methods: _extends({}, mapActions({
+        setActivities: 'setActivities'
+    })),
+    computed: _extends({}, mapGetters({
+        activities: 'getActivities'
+    })),
+    created: function created() {
+        var vm = this;
+
+        axios.get('http://localhost:8000/api/v1/activity').then(function (res) {
+            var activities = res.data;
+
+            vm.setActivities(activities);
+            console.log(activities);
+        }).catch(function (err) {
+            console.error('Error in App.vue. AJAX failed.');
+            new Error(err);
+        });
     }
-});
+}, 'components', {
+    'create-activity': __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default.a
+}));
 
 /***/ }),
 /* 50 */
@@ -14296,6 +14322,43 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-6a67f4a2", module.exports)
   }
 }
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+throw new Error("Cannot find module \"vuex\"");
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex___default.a);
+
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex___default.a.Store({
+  state: {
+    activities: []
+  },
+  getters: {
+    getActivities: function getActivities(state) {
+      return state.activities;
+    }
+  },
+  mutations: {
+    setActivities: function setActivities(state, activities) {
+      state.activities = activities;
+    }
+  },
+  actions: {
+    setActivities: function setActivities(_ref, activities) {
+      var commit = _ref.commit;
+
+      commit('setActivities', activities);
+    }
+  }
+});
 
 /***/ })
 /******/ ]);
