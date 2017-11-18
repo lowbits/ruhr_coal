@@ -1,5 +1,6 @@
 <template>
     <div id="form_create" class="form">
+        <form v-on:submit.prevent="send">
         <!--
         title	string
         description	string
@@ -21,7 +22,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control is-danger is-expanded">
-                    <input class="input" type="text" placeholder="Gib einen Titel ein" v-model="form.title">
+                    <input class="input" type="text" placeholder="Gib einen Titel ein" v-model="form.title" required>
                 <!--<span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
@@ -41,7 +42,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control is-expanded">
-                        <textarea class="textarea" placeholder="Beschreibe deine Aktivität" v-model="form.description"></textarea>
+                        <textarea class="textarea" placeholder="Beschreibe deine Aktivität" v-model="form.description" required></textarea>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,7 @@
                 <div class="field">
                     <div class="control has-icons-right">
                         <div class="select">
-                            <select class="is-danger" v-model="form.category">
+                            <select class="is-danger" v-model="form.category" required>
                                 <option>Essen & Trinken</option>
                                 <option>Event</option>
                                 <option>Führung</option>
@@ -77,7 +78,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-right">
-                        <input class="input" type="text" placeholder="Wie viel Geld?" v-model="form.price" maxLength="3" id="price_input">
+                        <input class="input" type="text" placeholder="Wie viel Geld?" v-model="form.price" maxLength="3" id="price_input" required>
                         <span class="icon is-small is-right">
                             <i class="fa fa-eur"></i>
                         </span>
@@ -99,7 +100,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-right">
-                        <input class="input" type="text" placeholder="Wo ist deine Aktivität?" v-model="form.location">
+                        <input class="input" type="text" placeholder="Wo ist deine Aktivität?" v-model="form.location" required>
                         <span class="icon is-small is-right">
                             <i class="fa fa-map-marker"></i>
                         </span>
@@ -116,9 +117,9 @@
                 <div class="field">
                     <div class="control">
                         von
-                        <input class="input time_input" type="time" v-model="form.opening_hours_from">
+                        <input class="input time_input" type="time" v-model="form.opening_hours_from" required>
                         Uhr bis
-                        <input class="input time_input" type="time" v-model="form.opening_hours_to">
+                        <input class="input time_input" type="time" v-model="form.opening_hours_to" required>
                         Uhr
                     </div>
                 </div>
@@ -132,7 +133,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-right">
-                        <input class="input" type="text" placeholder="Für wie viele Personen ist deine Aktivität?" maxLength="2" v-model="form.person_count">
+                        <input class="input" type="text" placeholder="Für wie viele Personen ist deine Aktivität?" maxLength="2" v-model="form.person_count" required>
                         <span class="icon is-small is-right">
                             <i class="fa fa-users"></i>
                         </span>
@@ -149,7 +150,7 @@
                 <div class="field">
                     <div class="controlhas-icons-right">
                         <div class="select">
-                            <select class="is-danger" v-model="form.weather">
+                            <select class="is-danger" v-model="form.weather" required>
                                 <option>Sonnig</option>
                                 <option>Wolkig</option>
                                 <option>ein bisschen Regen</option>
@@ -167,9 +168,8 @@
         <!--submit-->
         <div class="field is-grouped">
             <p class="control">
-                <a class="button" v-on:click="this.send">
-                    Aktivität erstellen
-                </a>
+                <!--v-on:submit="this.send"-->
+                <input type="submit" class="button"  value="Aktivität erstellen">
             </p>
             <p class="control">
                 <a class="button is-light">
@@ -177,6 +177,7 @@
                 </a>
             </p>
         </div>
+        </form>
     </div>
 </template>
 
@@ -186,7 +187,7 @@
         {
             return{
                 form: {
-                    title: 1,
+                    title: '',
                     description: 'aaf',
                     weather: 'Sonnig',
                     user_id: 1,
@@ -197,12 +198,13 @@
                     location_id: 1,
                     person_count: 1,
                     is_public: true,
-                    category: 'Zeitzeugenbericht',
+                    category: 'Essen & Trinken',
                 }
             }
         },
         methods: {
             send: function(){
+                this.form.opening_hours="von "+this.form.opening_hours_from+" Uhr - "+this.form.opening_hours_to+" Uhr";
                 console.log(this.form);
                 axios.post('/api/v1/activity/create/', this.form);
             }

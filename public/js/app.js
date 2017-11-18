@@ -14704,12 +14704,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             form: {
-                title: 1,
+                title: '',
                 description: 'aaf',
                 weather: 'Sonnig',
                 user_id: 1,
@@ -14720,12 +14721,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 location_id: 1,
                 person_count: 1,
                 is_public: true,
-                category: 'Zeitzeugenbericht'
+                category: 'Essen & Trinken'
             }
         };
     },
     methods: {
         send: function send() {
+            this.form.opening_hours = "von " + this.form.opening_hours_from + " Uhr - " + this.form.opening_hours_to + " Uhr";
             console.log(this.form);
             axios.post('/api/v1/activity/create/', this.form);
         }
@@ -14741,408 +14743,436 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form", attrs: { id: "form_create" } }, [
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(0, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control is-danger is-expanded" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.title,
-                  expression: "form.title"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", placeholder: "Gib einen Titel ein" },
-              domProps: { value: _vm.form.title },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "title", $event.target.value)
-                }
-              }
-            })
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
     _c(
-      "div",
-      { staticClass: "field is-horizontal is-grouped is-grouped-left" },
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.send($event)
+          }
+        }
+      },
       [
-        _vm._m(1, false, false),
-        _vm._v(" "),
-        _c("div", { staticClass: "field-body" }, [
-          _c("div", { staticClass: "field" }, [
-            _c("div", { staticClass: "control is-expanded" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.description,
-                    expression: "form.description"
-                  }
-                ],
-                staticClass: "textarea",
-                attrs: { placeholder: "Beschreibe deine Aktivität" },
-                domProps: { value: _vm.form.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "description", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(2, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control has-icons-right" }, [
-            _c("div", { staticClass: "select" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.category,
-                      expression: "form.category"
-                    }
-                  ],
-                  staticClass: "is-danger",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.form,
-                        "category",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("Essen & Trinken")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Event")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Führung")])
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(3, false, false)
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(4, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control has-icons-right" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.price,
-                  expression: "form.price"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "text",
-                placeholder: "Wie viel Geld?",
-                maxLength: "3",
-                id: "price_input"
-              },
-              domProps: { value: _vm.form.price },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "price", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(5, false, false)
-          ]),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(0, false, false),
           _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("label", { staticClass: "checkbox" }, [
-              _vm._v(
-                "\n                        Studentenrabatt\n                        "
-              ),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.student_discount,
-                    expression: "form.student_discount"
-                  }
-                ],
-                attrs: { type: "checkbox" },
-                domProps: {
-                  checked: Array.isArray(_vm.form.student_discount)
-                    ? _vm._i(_vm.form.student_discount, null) > -1
-                    : _vm.form.student_discount
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.form.student_discount,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          (_vm.form.student_discount = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.form.student_discount = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.$set(_vm.form, "student_discount", $$c)
-                    }
-                  }
-                }
-              })
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(6, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control has-icons-right" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.location,
-                  expression: "form.location"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", placeholder: "Wo ist deine Aktivität?" },
-              domProps: { value: _vm.form.location },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "location", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(7, false, false)
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(8, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control" }, [
-            _vm._v("\n                    von\n                    "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.opening_hours_from,
-                  expression: "form.opening_hours_from"
-                }
-              ],
-              staticClass: "input time_input",
-              attrs: { type: "time" },
-              domProps: { value: _vm.form.opening_hours_from },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "opening_hours_from", $event.target.value)
-                }
-              }
-            }),
-            _vm._v("\n                    Uhr bis\n                    "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.opening_hours_to,
-                  expression: "form.opening_hours_to"
-                }
-              ],
-              staticClass: "input time_input",
-              attrs: { type: "time" },
-              domProps: { value: _vm.form.opening_hours_to },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "opening_hours_to", $event.target.value)
-                }
-              }
-            }),
-            _vm._v("\n                    Uhr\n                ")
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(9, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "control has-icons-right" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.person_count,
-                  expression: "form.person_count"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "text",
-                placeholder: "Für wie viele Personen ist deine Aktivität?",
-                maxLength: "2"
-              },
-              domProps: { value: _vm.form.person_count },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "person_count", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(10, false, false)
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-horizontal" }, [
-      _vm._m(11, false, false),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "controlhas-icons-right" }, [
-            _c("div", { staticClass: "select" }, [
-              _c(
-                "select",
-                {
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control is-danger is-expanded" }, [
+                _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.weather,
-                      expression: "form.weather"
+                      value: _vm.form.title,
+                      expression: "form.title"
                     }
                   ],
-                  staticClass: "is-danger",
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Gib einen Titel ein",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.title },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "title", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "field is-horizontal is-grouped is-grouped-left" },
+          [
+            _vm._m(1, false, false),
+            _vm._v(" "),
+            _c("div", { staticClass: "field-body" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "control is-expanded" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.description,
+                        expression: "form.description"
+                      }
+                    ],
+                    staticClass: "textarea",
+                    attrs: {
+                      placeholder: "Beschreibe deine Aktivität",
+                      required: ""
+                    },
+                    domProps: { value: _vm.form.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "description", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(2, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("div", { staticClass: "select" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.category,
+                          expression: "form.category"
+                        }
+                      ],
+                      staticClass: "is-danger",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "category",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("Essen & Trinken")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Event")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Führung")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3, false, false)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(4, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.price,
+                      expression: "form.price"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Wie viel Geld?",
+                    maxLength: "3",
+                    id: "price_input",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "price", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(5, false, false)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("label", { staticClass: "checkbox" }, [
+                  _vm._v(
+                    "\n                        Studentenrabatt\n                        "
+                  ),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.student_discount,
+                        expression: "form.student_discount"
+                      }
+                    ],
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.student_discount)
+                        ? _vm._i(_vm.form.student_discount, null) > -1
+                        : _vm.form.student_discount
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.student_discount,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              (_vm.form.student_discount = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.form.student_discount = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "student_discount", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(6, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.location,
+                      expression: "form.location"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Wo ist deine Aktivität?",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.location },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "location", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(7, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(8, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control" }, [
+                _vm._v("\n                    von\n                    "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.opening_hours_from,
+                      expression: "form.opening_hours_from"
+                    }
+                  ],
+                  staticClass: "input time_input",
+                  attrs: { type: "time", required: "" },
+                  domProps: { value: _vm.form.opening_hours_from },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
                       _vm.$set(
                         _vm.form,
-                        "weather",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                        "opening_hours_from",
+                        $event.target.value
                       )
                     }
                   }
-                },
-                [
-                  _c("option", [_vm._v("Sonnig")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Wolkig")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("ein bisschen Regen")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Sturm")])
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(12, false, false)
+                }),
+                _vm._v("\n                    Uhr bis\n                    "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.opening_hours_to,
+                      expression: "form.opening_hours_to"
+                    }
+                  ],
+                  staticClass: "input time_input",
+                  attrs: { type: "time", required: "" },
+                  domProps: { value: _vm.form.opening_hours_to },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "opening_hours_to",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v("\n                    Uhr\n                ")
+              ])
             ])
           ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field is-grouped" }, [
-      _c("p", { staticClass: "control" }, [
-        _c("a", { staticClass: "button", on: { click: this.send } }, [
-          _vm._v("\n                Aktivität erstellen\n            ")
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(13, false, false)
-    ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(9, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.person_count,
+                      expression: "form.person_count"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Für wie viele Personen ist deine Aktivität?",
+                    maxLength: "2",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.person_count },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "person_count", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(10, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(11, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "controlhas-icons-right" }, [
+                _c("div", { staticClass: "select" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.weather,
+                          expression: "form.weather"
+                        }
+                      ],
+                      staticClass: "is-danger",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "weather",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("Sonnig")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Wolkig")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("ein bisschen Regen")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Sturm")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(12, false, false)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(13, false, false)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -15270,9 +15300,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("a", { staticClass: "button is-light" }, [
-        _vm._v("\n                Abbrechen\n            ")
+    return _c("div", { staticClass: "field is-grouped" }, [
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          staticClass: "button",
+          attrs: { type: "submit", value: "Aktivität erstellen" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "control" }, [
+        _c("a", { staticClass: "button is-light" }, [
+          _vm._v("\n                Abbrechen\n            ")
+        ])
       ])
     ])
   }
