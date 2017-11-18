@@ -100,13 +100,11 @@
           }
 
           // Weather-filter
-          console.log(activityWeather)
-          if (!filterWeather === 'eagl') {
+          if (!(filterWeather === 'egal')) {
             if (!activityWeather.includes(filterWeather)) {
               return false;
             }
           }
-
 
           return true;
         });
