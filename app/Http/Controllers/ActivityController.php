@@ -14,7 +14,9 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activites = $this->getActivities();
+
+        return $activites;
     }
 
     /**
@@ -81,5 +83,12 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         //
+    }
+
+    protected function getActivities(){
+        $activites = Activity::latest();
+
+        return $activites->get();
+
     }
 }

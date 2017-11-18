@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('api/v1/activity', 'ActivityController@index');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
 });
