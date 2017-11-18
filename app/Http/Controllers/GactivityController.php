@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Gactivity;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GactivityController extends Controller
 {
@@ -92,5 +94,19 @@ class GactivityController extends Controller
 
     }
 
-    
+    public function participate(Gactivity $gactivity)
+    {
+        $gactivity->participants()->attach(Auth::user()->id);
+
+
+        return response()->json(['successs', 'success']);
+
+    }
+
+    public function unparticipate(Gactivity $gactivity)
+    {
+        $gactivity->participants()->detach(Auth::user()->id);
+
+        return response()->json(['success', 'success']);
+    }
 }
