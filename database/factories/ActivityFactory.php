@@ -1,5 +1,6 @@
 <?php
 
+use App\Activity;
 use Faker\Generator as Faker;
 
 /*
@@ -13,13 +14,19 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
-    static $password;
+$factory->define(Activity::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(),
+        'weather' => '',
+        'user_id' => factory('App\User')->create()->id,
+        'opening_hours' => '',
+        'price' => null,
+        'student_discount' => random_int(0,1),
+        'location_id' => factory('App\Location')->create()->id,
+        'person_count' => random_int(1, 10),
+        'is_public' => random_int(0, 1),
+        'category' => $faker->word
     ];
 });
