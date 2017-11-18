@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use App\Location;
+use App\Gactivity;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ActivityController extends Controller
+class GactivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +16,11 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $activites = $this->getActivities();
+        $gactivity = Gactivity::latest()->with('participants', 'location')->get();
 
-        return $activites;
+        return $gactivity;
     }
+
 
 
     /**
@@ -35,7 +37,7 @@ class ActivityController extends Controller
             'location_id' => 'required|exists:locations,id'
         ]);
 
-        $activity = Activity::create($request->all());
+        $gactivity = Gactivity::create($request->all());
 
         return response()->json(['success' => 'success'], 200);
     }
@@ -43,12 +45,12 @@ class ActivityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Activity  $activity
+     * @param  \App\Gactivity  $gactivity
      * @return \Illuminate\Http\Response
      */
-    public function show(Activity $activity)
+    public function show(Gactivity $gactivity)
     {
-        return $activity->load(['location', 'user']);
+        return $gactivity->load(['participants', 'location']);
     }
 
 
@@ -57,41 +59,42 @@ class ActivityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Activity  $activity
+     * @param  \App\Gactivity  $gactivity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(Request $request, Gactivity $gactivity)
     {
+        $gactivity->update($request->all());
 
-        $this->validate($request, [
-            'title' => 'required',
-            'user_id' => 'required|exists:users,id',
-            'location_id' => 'required|exists:locations,id'
-        ]);
+        return response()->json(['success' => 'success'], 200);
 
-        $activity->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Activity  $activity
+     * @param  \App\Gactivity  $gactivity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy(Gactivity $gactivity)
     {
-
-        $activity->delete();
+        $gactivity->delete();
 
         return response()->json(['success' => 'Activity deleted'], 200);
 
-
     }
 
-    protected function getActivities(){
-        $activites = Activity::latest()->with(['location', 'user']);
+    public function participate(Gactivity $gactivity)
+    {
+        $gactivity->participants()->attach(1);
 
-        return $activites->get();
+        return response()->json(['successs', 'success']);
+    }
 
+    public function unparticipate(Gactivity $gactivity)
+    {
+        $gactivity->participants()->detach(1);
+
+        return response()->json(['success', 'success']);
     }
 }

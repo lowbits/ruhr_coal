@@ -17,4 +17,9 @@ class Location extends Model
     {
         return $this->belongsToMany(Tour::class)->withTimestamps();
     }
+
+    public function gactivities()
+    {
+        return $this->hasMany(Gactivity::class);
+    }
 }
