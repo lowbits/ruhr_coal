@@ -13,21 +13,19 @@ class CreateActivityTable extends Migration
      */
     public function up()
     {
-        Schema::create(/**
-         * @param Blueprint $table
-         */
-            'activity', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('weather')->nullable();
-            $table->unsignedInteger('creator_id');
-            $table->string('opening_hours')->nullable();
-            $table->float('price');
-            $table->boolean('student_discount')->nullable();
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('location_id');
+            $table->string('opening_hours')->nullable();
+            $table->string('category')->nullable();
+            $table->float('price')->nullable();
+            $table->boolean('student_discount')->nullable();
             $table->integer('person_count')->nullable();
-            $table->boolean('isPublic');
+            $table->boolean('is_public')->nullable();
             $table->timestamps();
         });
     }
