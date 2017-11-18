@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function gactivites(){
-        return $this->hasMany(Gactivity::class);
+        return $this->belongsToMany(Gactivity::class)->withTimestamps();
     }
 }

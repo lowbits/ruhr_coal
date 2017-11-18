@@ -9,7 +9,7 @@ class Gactivity extends Model
     protected $guarded = [];
 
     public function participants(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
 }
