@@ -87,6 +87,19 @@
                     </div>
                 </div>
             </div>
+            <!--Date-->
+            <div class="field is-horizontal">
+                <div class="field-label is-normal column is-one-quarter">
+                    <label class="label">Datum</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="date" v-model="form.date" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--Öffnungszeiten-->
             <div class="field is-horizontal">
                 <div class="field-label is-normal column is-one-quarter">
@@ -100,6 +113,28 @@
                             Uhr bis
                             <input class="input time_input" type="time" v-model="form.opening_hours_to" required>
                             Uhr
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Rythmus-->
+            <div class="field is-horizontal">
+                <div class="field-label is-normal column is-one-quarter">
+                    <label class="label">Rythmus</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="controlhas-icons-right">
+                            <div class="select">
+                                <select class="is-danger" v-model="form.weather" required>
+                                    <option>ab 42°C mit Sandalen und Socken</option>
+                                    <option>bei jedem Wetter</option>
+                                    <option>bei trockenem Wetter</option>
+                                </select>
+                                <span class="icon is-small is-right">
+                    <i class="fa wi-day-sunny"></i>
+                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,6 +211,7 @@
                     person_count: 1,
                     is_public: true,
                     category: 'Führung',
+                    date: '2017-11-17'
                 },
                 locations: [{
                     title: 'Duisburg'
@@ -195,7 +231,7 @@
                     }
                 }
                 console.log(this.form);
-                axios.post('/api/v1/activity', this.form).then((res) => {
+                axios.post('/api/v1/gactivity', this.form).then((res) => {
                 })
                     .catch((err) => {
                         console.error('Error in App.vue. AJAX failed.');
