@@ -48,7 +48,7 @@ class ActivityController extends Controller
             'is_public' => request('is_public'),
             'category' => request('category')
         ]);
-        //dd($activity);
+
         return response()->json(['success' => 'success'], 200);
     }
 
@@ -107,7 +107,7 @@ class ActivityController extends Controller
 
         $activity->delete();
 
-        return response()->json(['success' => 'Activity delted'], 200);
+        return response()->json(['success' => 'Activity deleted'], 200);
 
 
     }
