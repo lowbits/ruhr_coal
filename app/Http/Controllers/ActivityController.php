@@ -68,7 +68,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        //
+        return $activity;
     }
 
     /**
@@ -79,7 +79,7 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+
     }
 
     /**
