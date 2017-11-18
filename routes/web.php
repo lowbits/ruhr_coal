@@ -21,6 +21,8 @@ Route::prefix('api/v1/')->group(function() {
     Route::resource('tour', 'TourController');
     Route::resource('activity', 'ActivityController');
     Route::resource('gactivity', 'GactivityController');
+    Route::post('gactivity/participate/{gactivity}', 'GactivityController@participate');
+    Route::post('gactivity/unparticipate/{gactivity}', 'GactivityController@unparticipate');
     Route::resource('location', 'LocationController');
 });
 

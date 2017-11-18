@@ -88,9 +88,7 @@ class GactivityController extends Controller
     {
         $gactivity->participants()->attach(Auth::user()->id);
 
-
         return response()->json(['successs', 'success']);
-
     }
 
     public function unparticipate(Gactivity $gactivity)
