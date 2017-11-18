@@ -26,4 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function gactivites(){
+        return $this->belongsToMany(Gactivity::class)->withTimestamps();
+    }
 }

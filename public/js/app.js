@@ -14040,12 +14040,16 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CreateGActivity_vue__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CreateGActivity_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CreateGActivity_vue__);
 //
 //
 //
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -14068,6 +14072,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         ...mapGetters({
             activities: 'getActivities',
+            results: 'getFilterResults',
         }),
     },
     created() {
@@ -14084,7 +14089,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             })
     }*/
     components: {
-        'create-activity': __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default.a
+        CreateActivity: __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default.a,
+        'create-activity': __WEBPACK_IMPORTED_MODULE_0__CreateActivity_vue___default.a,
+        'create-gactivity': __WEBPACK_IMPORTED_MODULE_1__CreateGActivity_vue___default.a
     }
 });
 
@@ -14694,7 +14701,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form: {
                 title: '',
                 description: 'aaf',
-                weather: 'Sonnig',
+                weather: 'ab 42°C mit Sandalen und Socken',
                 user_id: 1,
                 opening_hours_from: '20:00',
                 opening_hours_to: '22:00',
@@ -14776,6 +14783,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form", attrs: { id: "form_create" } }, [
+    _c("h1", [_vm._v("Aktivität erstellen")]),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -15195,13 +15204,11 @@ var render = function() {
                       }
                     },
                     [
-                      _c("option", [_vm._v("Sonnig")]),
+                      _c("option", [_vm._v("ab 42°C mit Sandalen und Socken")]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("Wolkig")]),
+                      _c("option", [_vm._v("bei jedem Wetter")]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("ein bisschen Regen")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Sturm")])
+                      _c("option", [_vm._v("bei trockenem Wetter")])
                     ]
                   ),
                   _vm._v(" "),
@@ -15375,7 +15382,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("create-activity")], 1)
+  return _c("div", [_c("create-gactivity")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -15392,6 +15399,919 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(68)
+}
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/CreateGActivity.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f6dc4dda", Component.options)
+  } else {
+    hotAPI.reload("data-v-f6dc4dda", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(43)("1acbb94e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6dc4dda\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./CreateGActivity.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6dc4dda\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./CreateGActivity.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(42)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n#form_create{\n    width: 500px;\n}\n.time_input{\n    width: 100px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            form: {
+                title: '',
+                description: 'aaf',
+                weather: 'ab 42°C mit Sandalen und Socken',
+                user_id: 1,
+                opening_hours_from: '20:00',
+                opening_hours_to: '22:00',
+                price: 1,
+                location: '',
+                location_id: 1,
+                person_count: 1,
+                is_public: true,
+                category: 'Führung'
+            },
+            locations: [{
+                title: 'Duisburg'
+            }]
+        };
+    },
+    methods: {
+        send: function send() {
+            //opening hours
+            this.form.opening_hours = "von " + this.form.opening_hours_from + " Uhr - " + this.form.opening_hours_to + " Uhr";
+            //get location id
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var loc = _step.value;
+
+                    console.log(this.form.location);
+                    if (loc.title == this.form.location) {
+                        console.log('found');
+                        this.form.location_id = loc.id;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            console.log(this.form);
+            axios.post('/api/v1/activity', this.form).then(function (res) {}).catch(function (err) {
+                console.error('Error in App.vue. AJAX failed.');
+                new Error(err);
+            });
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        console.log('created');
+        axios.get('/api/v1/location').then(function (res) {
+            var loc = res.data;
+            console.log(res.data);
+            _this.locations = loc;
+        }).catch(function (err) {
+            console.error('Error in App.vue. AJAX failed.');
+            new Error(err);
+        });
+    }
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form", attrs: { id: "form_create" } }, [
+    _c("h1", [_vm._v("Geführte Aktivität erstellen")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.send($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(0, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control is-danger is-expanded" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.title,
+                      expression: "form.title"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Gib einen Titel ein",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "title", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "field is-horizontal is-grouped is-grouped-left" },
+          [
+            _vm._m(1, false, false),
+            _vm._v(" "),
+            _c("div", { staticClass: "field-body" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "control is-expanded" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.description,
+                        expression: "form.description"
+                      }
+                    ],
+                    staticClass: "textarea",
+                    attrs: {
+                      placeholder: "Beschreibe deine Aktivität",
+                      required: ""
+                    },
+                    domProps: { value: _vm.form.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "description", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(2, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("div", { staticClass: "select" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.category,
+                          expression: "form.category"
+                        }
+                      ],
+                      staticClass: "is-danger",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "category",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("Essen & Trinken")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Event")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Führung")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3, false, false)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(4, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.price,
+                      expression: "form.price"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Wie viel Geld?",
+                    maxLength: "3",
+                    id: "price_input",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "price", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(5, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(6, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.location,
+                      expression: "form.location"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Wo ist deine Aktivität?",
+                    required: "",
+                    list: "suggestions"
+                  },
+                  domProps: { value: _vm.form.location },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "location", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "datalist",
+                  { attrs: { id: "suggestions" } },
+                  _vm._l(_vm.locations, function(value) {
+                    return _c("option", { domProps: { value: value.title } })
+                  })
+                ),
+                _vm._v(" "),
+                _vm._m(7, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(8, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control" }, [
+                _vm._v(
+                  "\n                        von\n                        "
+                ),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.opening_hours_from,
+                      expression: "form.opening_hours_from"
+                    }
+                  ],
+                  staticClass: "input time_input",
+                  attrs: { type: "time", required: "" },
+                  domProps: { value: _vm.form.opening_hours_from },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "opening_hours_from",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(
+                  "\n                        Uhr bis\n                        "
+                ),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.opening_hours_to,
+                      expression: "form.opening_hours_to"
+                    }
+                  ],
+                  staticClass: "input time_input",
+                  attrs: { type: "time", required: "" },
+                  domProps: { value: _vm.form.opening_hours_to },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "opening_hours_to",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v("\n                        Uhr\n                    ")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(9, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.person_count,
+                      expression: "form.person_count"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Für wie viele Personen ist deine Aktivität?",
+                    maxLength: "2",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.person_count },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "person_count", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(10, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(11, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "controlhas-icons-right" }, [
+                _c("div", { staticClass: "select" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.weather,
+                          expression: "form.weather"
+                        }
+                      ],
+                      staticClass: "is-danger",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "weather",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("ab 42°C mit Sandalen und Socken")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("bei jedem Wetter")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("bei trockenem Wetter")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(12, false, false)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(13, false, false)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Titel")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Beschreibung")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Kategorie")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa wi-day-sunny" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Preis")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa fa-eur" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Ort")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa fa-map-marker" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Uhrzeit")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Personenzahl")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa fa-users" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Wetter")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa wi-day-sunny" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "field is-grouped is-grouped-centered" }, [
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          staticClass: "button",
+          attrs: { type: "submit", value: "Aktivität erstellen" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "control" }, [
+        _c("a", { staticClass: "button is-light" }, [
+          _vm._v("\n                    Abbrechen\n                ")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f6dc4dda", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

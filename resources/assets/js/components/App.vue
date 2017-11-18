@@ -1,11 +1,13 @@
 <template>
     <div>
-        <create-activity></create-activity>
+        <!--<create-activity></create-activity>-->
+        <create-gactivity></create-gactivity>
     </div>
 </template>
 
 <script>
     import CreateActivity from './CreateActivity.vue';
+    import CreateGActivity from './CreateGActivity.vue';
     export default {
         /*methods: {
     import axios from 'axios';
@@ -27,6 +29,7 @@
         computed: {
             ...mapGetters({
                 activities: 'getActivities',
+                results: 'getFilterResults',
             }),
         },
         created() {
@@ -45,7 +48,9 @@
                 })
         }*/
         components: {
-            'create-activity': CreateActivity
+            CreateActivity,
+            'create-activity': CreateActivity,
+            'create-gactivity': CreateGActivity
         }
     }
 </script>

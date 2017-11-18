@@ -1,5 +1,6 @@
 <template>
     <div id="form_create" class="form">
+        <h1>Aktivität erstellen</h1>
         <form v-on:submit.prevent="send">
         <!--Title-->
         <div class="field is-horizontal">
@@ -134,10 +135,9 @@
                     <div class="controlhas-icons-right">
                         <div class="select">
                             <select class="is-danger" v-model="form.weather" required>
-                                <option>Sonnig</option>
-                                <option>Wolkig</option>
-                                <option>ein bisschen Regen</option>
-                                <option>Sturm</option>
+                                <option>ab 42°C mit Sandalen und Socken</option>
+                                <option>bei jedem Wetter</option>
+                                <option>bei trockenem Wetter</option>
                             </select>
                             <span class="icon is-small is-right">
                     <i class="fa wi-day-sunny"></i>
@@ -171,7 +171,7 @@
                 form: {
                     title: '',
                     description: 'aaf',
-                    weather: 'Sonnig',
+                    weather: 'ab 42°C mit Sandalen und Socken',
                     user_id: 1,
                     opening_hours_from: '20:00',
                     opening_hours_to: '22:00',
