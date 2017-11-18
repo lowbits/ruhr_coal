@@ -19,7 +19,7 @@ $factory->define(Activity::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(),
-        'weather' => 'bei trockenem Wetter',
+        'weather' => array_rand(['bei trockenem Wetter', 'bei jedem Wetter', 'ab 42°C mit Sandalen und Socken']),
         'user_id' => factory('App\User')->create()->id,
         'opening_hours' => 'von 10:00 Uhr – 19:00 Uhr',
         'price' => mt_rand() / mt_getrandmax() * random_int(10, 50),
