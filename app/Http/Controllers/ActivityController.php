@@ -35,19 +35,7 @@ class ActivityController extends Controller
             'location_id' => 'required|exists:locations,id'
         ]);
 
-        $activity = Activity::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'weather' => request('channel_id'),
-            'user_id' => auth()->id(),
-            'opening_hours' => request('opening_hours'),
-            'price' => request('price'),
-            'student_discount' => request('student_discount'),
-            'location_id' => request('location_id'),
-            'person_count' => request('person_count'),
-            'is_public' => request('is_public'),
-            'category' => request('category')
-        ]);
+        $activity = Activity::create($request->all());
 
         return response()->json(['success' => 'success'], 200);
     }
@@ -60,7 +48,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        return $activity;
+        return $activity->load(['location', 'user']);
     }
 
 
@@ -113,7 +101,7 @@ class ActivityController extends Controller
     }
 
     protected function getActivities(){
-        $activites = Activity::latest()->with('location');
+        $activites = Activity::latest()->with(['location', 'user']);
 
         return $activites->get();
 

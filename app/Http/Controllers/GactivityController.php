@@ -37,20 +37,7 @@ class GactivityController extends Controller
             'location_id' => 'required|exists:locations,id'
         ]);
 
-        $gactivity = Gactivity::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'user_id' => auth()->id(),
-            'price' => request('price'),
-            'student_discount' => request('student_discount'),
-            'location_id' => request('location_id'),
-            'person_count' => request('person_count'),
-            'is_public' => request('is_public'),
-            'category' => request('category'),
-            'location_id' => request('location_id'),
-            'date' => request('date'),
-            'rythm' => request('rythm'),
-        ]);
+        $gactivity = Gactivity::create($request->all());
 
         return response()->json(['success' => 'success'], 200);
     }
@@ -77,7 +64,10 @@ class GactivityController extends Controller
      */
     public function update(Request $request, Gactivity $gactivity)
     {
-        //
+        $gactivity->update($request->all());
+
+        return response()->json(['success' => 'success'], 200);
+
     }
 
     /**
