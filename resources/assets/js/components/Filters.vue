@@ -2,12 +2,12 @@
   <aside>
     <div class="field">
       <h3 class="title is-size-4">Standort</h3>
-      <input class="input" type="text" v-model="filter.location" placeholder="Stadt eingeben">
+      <input class="input" type="text" @keyup="filterResults" v-model="filter.location" placeholder="Stadt eingeben">
     </div>
 
     <div class="field">
       <h3 class="title is-size-4">title</h3>
-      <input class="input" type="text" v-model="filter.title" placeholder="Stadt eingeben">
+      <input class="input" type="text" @keyup="filterResults" v-model="filter.title" placeholder="Stadt eingeben">
     </div>
   </aside>
 </template>
@@ -28,16 +28,10 @@
       ...mapActions({
           setFilterResults: 'setFilterResults',
       }),
-    },
-    computed: {
-      ...mapGetters({
-          activities: 'getActivities',
-      }),
-      results() {
+      filterResults() {
         const allActivities = this.activities;
         let results = [];
 
-        console.log(allActivities);
         for (const key in this.filter) {
           if (this.filter.hasOwnProperty(key)) {
             const value = this.filter[key];
@@ -55,6 +49,11 @@
         this.setFilterResults(results);
         return results;
       },
+    },
+    computed: {
+      ...mapGetters({
+          activities: 'getActivities',
+      }),
     }
   }
 </script>
@@ -64,7 +63,7 @@
 
   aside {
     min-height: 100vh;
-    max-width: 350px;
+    width: 350px;
     padding: 20px;
     background: $primary-light;
   }

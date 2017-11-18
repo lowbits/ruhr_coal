@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="main">
         <filters></filters>
         <section class="section">
             <div class="container is-fluid">
-                <activityCard v-for="activity in activities" :key="activity.id" :activity="activity"></activityCard>
+                <activityCard v-for="activity in results" :key="activity.id" :activity="activity"></activityCard>
             </div>
         </section>
     </div>
@@ -29,6 +29,7 @@
         computed: {
             ...mapGetters({
                 activities: 'getActivities',
+                results: 'getFilterResults',
             }),
         },
         created() {
@@ -48,3 +49,13 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+.main {
+    display: flex;
+}
+
+.section {
+    flex: 1;
+}
+</style>
