@@ -42,7 +42,6 @@
                     const activities = res.data;
 
                     vm.setActivities(activities);
-                    console.log(activities);
                 })
                 .catch((err) => {
                     console.error('Error in App.vue. AJAX failed.');

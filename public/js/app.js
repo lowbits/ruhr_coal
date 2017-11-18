@@ -13088,7 +13088,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var activities = res.data;
 
             vm.setActivities(activities);
-            console.log(activities);
         }).catch(function (err) {
             console.error('Error in App.vue. AJAX failed.');
             new Error(err);
