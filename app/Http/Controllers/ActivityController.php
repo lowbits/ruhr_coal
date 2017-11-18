@@ -37,7 +37,27 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|alpha',
+            'user_id' => 'required|exists:user,id',
+            'location_id' => 'required|exists:location,id'
+        ]);
+
+        $activity = Activity::create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'weather' => request('channel_id'),
+            'user_id' => auth()->id(),
+            'opening_hours' => request('opening_hours'),
+            'price' => request('price'),
+            'student_discount' => request('student_discount'),
+            'location_id' => request('location_id'),
+            'person_count' => request('person_count'),
+            'is_public' => request('is_public'),
+            'category' => request('category')
+        ]);
+
+        return response($activity->id, 200);
     }
 
     /**
