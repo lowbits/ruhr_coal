@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="section">
   <div class="columns">
-    <div class="column is-one-third is-offset-one-third m-t-100">
+    <div class="column is-one-third is-offset-one-third">
       <div class="card">
         <div class="card-content">
           <h1 class="title">Join The Community</h1>
@@ -61,5 +61,5 @@
       <h5 class="has-text-centered m-t-20"><a href="{{route('login')}}" class="is-muted">Already have an Account?</a></h5>
     </div>
   </div>
-
+</div>
 @endsection

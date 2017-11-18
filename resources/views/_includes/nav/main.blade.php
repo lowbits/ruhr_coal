@@ -19,12 +19,7 @@
                         <a class="navbar-item is-active">
                             Home
                         </a>
-                        <a class="navbar-item">
-                            Examples
-                        </a>
-                        <a class="navbar-item">
-                            Documentation
-                        </a>
+
                         @if (Auth::guest())
                             <a class="navbar-item" href="{{route('login')}}" class="nav-item is-tab">Login</a>
                             <a class="navbar-item" href="{{route('register')}}" class="nav-item is-tab">Register</a>
@@ -32,7 +27,7 @@
                             <span class="navbar-item">
                             <div class="dropdown is-hoverable">
                                 <div class="dropdown-trigger">
-                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
                                         <span>Hallo {{Auth::user()->name}}</span>
                                         <span class="icon is-small">
                                         <i class="fa fa-angle-down" aria-hidden="true"></i>
