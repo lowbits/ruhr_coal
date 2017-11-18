@@ -1,0 +1,100 @@
+<template>
+  <div class="wrapper">
+    <aside>
+      <div class="field">
+        <h3 class="title is-size-4">Standort</h3>
+        <input class="input" type="text" v-model="filter.location" placeholder="Stadt eingeben">
+      </div>
+
+      <div class="field">
+        <h3 class="title is-size-4">title</h3>
+        <input class="input" type="text" v-model="filter.title" placeholder="Stadt eingeben">
+      </div>
+    </aside>
+    <main>
+      <ul>
+        <li v-for="result in results" :key="result.id">{{ result.title }}</li>
+      </ul>
+    </main>
+  </div>
+</template>
+
+<script>
+  import { mapActions, mapGetters } from 'vuex';
+
+  export default {
+    data() {
+      return {
+        filter: {
+          location: '',
+          title: '',
+        },
+      }
+    },
+    methods: {
+      ...mapActions({
+          filterResults: 'setFilterResults',
+      }),
+    },
+    computed: {
+      results() {
+        const allActivities = this.activities;
+        let results = [];
+
+        console.log(allActivities);
+        for (const key in this.filter) {
+          if (this.filter.hasOwnProperty(key)) {
+            const value = this.filter[key];
+
+            let matched = allActivities.filter((activity) => {
+              if (typeof activity[key] === 'string') {
+                return activity[key].toLowerCase().includes(value);
+              }
+            });
+
+            results.push(...matched);
+          }
+        }
+
+        return results;
+      },
+      ...mapGetters({
+          activities: 'getActivities',
+      }),
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import '../../sass/_variables.scss';
+
+  .wrapper {
+    display: flex;
+  }
+
+  aside {
+    min-height: 100vh;
+    max-width: 350px;
+    padding: 20px;
+    background: $primary-light;
+  }
+
+  .title {
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .input {
+    border-radius: 0;
+    border: none;
+    height: 45px;
+    padding-left: 15px;
+  }
+
+  .field + .field {
+    margin-top: 30px;
+  }
+</style>
+
+

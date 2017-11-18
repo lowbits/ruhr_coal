@@ -1,29 +1,18 @@
 <template>
-    <section class="section">
-            <div class="columns is-centered">
-                <div class="column is-8">
-                    <article class="message">
-                        <div class="message-header">Example Component</div>
-
-                        <div class="message-body">
-                            I'm an example component!
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <ul>
-                <li v-for="activity in activities" :key="activity.id">{{ activity.title }}</li>
-            </ul>
-        </div>
-    </section>
+    <div>
+        <filters></filters>
+    </div>
 </template>
 
 <script>
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
+    import Filters from './Filters.vue'
 
     export default {
+        components: {
+            Filters
+        },
         methods: {
             ...mapActions({
                 setActivities: 'setActivities',
