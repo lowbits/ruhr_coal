@@ -13842,16 +13842,23 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
-    activities: []
+    activities: [],
+    filterResults: []
   },
   getters: {
     getActivities: function getActivities(state) {
       return state.activities;
+    },
+    getFilterResults: function getFilterResults(state) {
+      return state.filterResults;
     }
   },
   mutations: {
     setActivities: function setActivities(state, activities) {
       state.activities = activities;
+    },
+    setFilterResults: function setFilterResults(state, results) {
+      state.filterResults = results;
     }
   },
   actions: {
@@ -13859,6 +13866,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       var commit = _ref.commit;
 
       commit('setActivities', activities);
+    },
+    setFilterResults: function setFilterResults(_ref2, results) {
+      var commit = _ref2.commit;
+
+      commit('setFilterResults', results);
     }
   }
 });
@@ -13889,7 +13901,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/App.vue"
+Component.options.__file = "resources\\assets\\js\\components\\App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -13899,9 +13911,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8142f38c", Component.options)
+    hotAPI.createRecord("data-v-117390fa", Component.options)
   } else {
-    hotAPI.reload("data-v-8142f38c", Component.options)
+    hotAPI.reload("data-v-117390fa", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -14031,6 +14043,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activity_activity_card_vue__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activity_activity_card_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__activity_activity_card_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Filters_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Filters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Filters_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -14049,12 +14063,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        activityCard: __WEBPACK_IMPORTED_MODULE_2__activity_activity_card_vue___default.a
+        activityCard: __WEBPACK_IMPORTED_MODULE_2__activity_activity_card_vue___default.a,
+        filters: __WEBPACK_IMPORTED_MODULE_3__Filters_vue___default.a
     },
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])({
-        setActivities: 'setActivities'
+        setActivities: 'setActivities',
+        setFilterResults: 'setFilterResults'
     })),
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
         activities: 'getActivities'
@@ -14066,6 +14083,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var activities = res.data;
 
             vm.setActivities(activities);
+            vm.setFilterResults(activities);
         }).catch(function (err) {
             console.error('Error in App.vue. AJAX failed.');
             new Error(err);
@@ -14468,14 +14486,249 @@ module.exports = function listToStyles (parentId, list) {
 /***/ }),
 /* 55 */,
 /* 56 */,
-/* 57 */,
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(62)
+}
+var normalizeComponent = __webpack_require__(37)
+/* script */
+var __vue_script__ = __webpack_require__(60)
+/* template */
+var __vue_template__ = __webpack_require__(64)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-37501558"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Filters.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-37501558", Component.options)
+  } else {
+    hotAPI.reload("data-v-37501558", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 58 */,
 /* 59 */,
-/* 60 */,
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(11);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      filter: {
+        location: '',
+        title: ''
+      }
+    };
+  },
+
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
+    setFilterResults: 'setFilterResults'
+  })),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
+    activities: 'getActivities'
+  }), {
+    results: function results() {
+      var _this = this;
+
+      var allActivities = this.activities;
+      var results = [];
+
+      console.log(allActivities);
+
+      var _loop = function _loop(key) {
+        if (_this.filter.hasOwnProperty(key)) {
+          var value = _this.filter[key];
+
+          var matched = allActivities.filter(function (activity) {
+            if (typeof activity[key] === 'string') {
+              return activity[key].toLowerCase().includes(value);
+            }
+          });
+
+          results.push.apply(results, _toConsumableArray(matched));
+        }
+      };
+
+      for (var key in this.filter) {
+        _loop(key);
+      }
+
+      this.setFilterResults(results);
+      return results;
+    }
+  })
+});
+
+/***/ }),
 /* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(63);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(53)("278a6acb", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-37501558\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Filters.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-37501558\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Filters.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(42)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\naside[data-v-37501558] {\n  min-height: 100vh;\n  max-width: 350px;\n  padding: 20px;\n  background: #406C80;\n}\n.title[data-v-37501558] {\n  color: #fff;\n  font-weight: 300;\n  margin-bottom: 20px;\n}\n.input[data-v-37501558] {\n  border-radius: 0;\n  border: none;\n  height: 45px;\n  padding-left: 15px;\n}\n.field + .field[data-v-37501558] {\n  margin-top: 30px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("aside", [
+    _c("div", { staticClass: "field" }, [
+      _c("h3", { staticClass: "title is-size-4" }, [_vm._v("Standort")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.filter.location,
+            expression: "filter.location"
+          }
+        ],
+        staticClass: "input",
+        attrs: { type: "text", placeholder: "Stadt eingeben" },
+        domProps: { value: _vm.filter.location },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.filter, "location", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("h3", { staticClass: "title is-size-4" }, [_vm._v("title")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.filter.title,
+            expression: "filter.title"
+          }
+        ],
+        staticClass: "input",
+        attrs: { type: "text", placeholder: "Stadt eingeben" },
+        domProps: { value: _vm.filter.title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.filter, "title", $event.target.value)
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-37501558", module.exports)
+  }
+}
+
+/***/ }),
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14656,11 +14909,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-<<<<<<< Updated upstream
     require("vue-hot-reload-api")      .rerender("data-v-6e57baca", module.exports)
-=======
-    require("vue-hot-reload-api")      .rerender("data-v-8142f38c", module.exports)
->>>>>>> Stashed changes
   }
 }
 

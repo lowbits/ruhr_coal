@@ -1,22 +1,15 @@
 <template>
-  <div class="wrapper">
-    <aside>
-      <div class="field">
-        <h3 class="title is-size-4">Standort</h3>
-        <input class="input" type="text" v-model="filter.location" placeholder="Stadt eingeben">
-      </div>
+  <aside>
+    <div class="field">
+      <h3 class="title is-size-4">Standort</h3>
+      <input class="input" type="text" v-model="filter.location" placeholder="Stadt eingeben">
+    </div>
 
-      <div class="field">
-        <h3 class="title is-size-4">title</h3>
-        <input class="input" type="text" v-model="filter.title" placeholder="Stadt eingeben">
-      </div>
-    </aside>
-    <main>
-      <ul>
-        <li v-for="result in results" :key="result.id">{{ result.title }}</li>
-      </ul>
-    </main>
-  </div>
+    <div class="field">
+      <h3 class="title is-size-4">title</h3>
+      <input class="input" type="text" v-model="filter.title" placeholder="Stadt eingeben">
+    </div>
+  </aside>
 </template>
 
 <script>
@@ -33,10 +26,13 @@
     },
     methods: {
       ...mapActions({
-          filterResults: 'setFilterResults',
+          setFilterResults: 'setFilterResults',
       }),
     },
     computed: {
+      ...mapGetters({
+          activities: 'getActivities',
+      }),
       results() {
         const allActivities = this.activities;
         let results = [];
@@ -56,21 +52,15 @@
           }
         }
 
+        this.setFilterResults(results);
         return results;
       },
-      ...mapGetters({
-          activities: 'getActivities',
-      }),
     }
   }
 </script>
 
 <style lang="scss" scoped>
   @import '../../sass/_variables.scss';
-
-  .wrapper {
-    display: flex;
-  }
 
   aside {
     min-height: 100vh;
