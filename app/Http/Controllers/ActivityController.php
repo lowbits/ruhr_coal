@@ -80,18 +80,14 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-
         $activity->delete();
 
         return response()->json(['success' => 'Activity deleted'], 200);
-
-
     }
 
     protected function getActivities(){
         $activites = Activity::latest()->with(['location', 'user']);
 
         return $activites->get();
-
     }
 }
