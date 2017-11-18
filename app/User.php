@@ -27,7 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function gactivites(){
+    public function gactivities(){
         return $this->belongsToMany(Gactivity::class)->withTimestamps();
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

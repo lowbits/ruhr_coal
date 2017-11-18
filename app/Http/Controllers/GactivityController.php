@@ -32,7 +32,7 @@ class GactivityController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|alpha',
+            'title' => 'required',
             'user_id' => 'required|exists:users,id',
             'location_id' => 'required|exists:locations,id'
         ]);
@@ -86,14 +86,14 @@ class GactivityController extends Controller
 
     public function participate(Gactivity $gactivity)
     {
-        $gactivity->participants()->attach(Auth::user()->id);
+        $gactivity->participants()->attach(1);
 
         return response()->json(['successs', 'success']);
     }
 
     public function unparticipate(Gactivity $gactivity)
     {
-        $gactivity->participants()->detach(Auth::user()->id);
+        $gactivity->participants()->detach(1);
 
         return response()->json(['success', 'success']);
     }
