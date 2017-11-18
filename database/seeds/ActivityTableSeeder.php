@@ -1,6 +1,7 @@
 <?php
 
 use App\Activity;
+use App\Gactivity;
 use App\Location;
 use App\Tour;
 use App\User;
@@ -22,6 +23,13 @@ class ActivityTableSeeder extends Seeder
 
             $locations = Location::inRandomOrder()->limit($location_count)->get();
             $tour->locations()->attach($locations);
+        });
+
+        factory(Gactivity::class, 20)->create()->each(function($gactivity) {
+            $user_count = random_int(2, 10);
+            $users = User::inRandomOrder()->limit($user_count)->get();
+
+            $gactivity->participants()->attach($users);
         });
 
         factory(User::class)->create([

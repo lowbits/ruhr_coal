@@ -15,6 +15,17 @@ class CreateGactivitiesTable extends Migration
     {
         Schema::create('gactivities', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('location_id');
+            $table->string('category')->nullable();
+            $table->float('price', 10, 2)->nullable();
+            $table->integer('max_person_count')->nullable();
+            $table->integer('min_person_count')->nullable();
+            $table->boolean('is_public')->nullable();
+            $table->string('rhythm')->nullable();
+            $table->dateTime('date')->nullable();
             $table->timestamps();
         });
     }
