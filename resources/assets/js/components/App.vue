@@ -7,10 +7,7 @@
 <script>
     import CreateActivity from './CreateActivity.vue';
     export default {
-        components: {
-            activityCard
-        },
-        methods: {
+        /*methods: {
             ...mapActions({
                 setActivities: 'setActivities',
             })
@@ -34,8 +31,8 @@
                     console.error('Error in App.vue. AJAX failed.');
                     new Error(err);
                 })
-        }
-        ,components: {
+        }*/
+        components: {
             'create-activity': CreateActivity
         }
     }

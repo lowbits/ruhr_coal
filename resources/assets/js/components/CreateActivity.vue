@@ -14,7 +14,6 @@
         category	string
         -->
         <!--Title-->
-
         <div class="field is-horizontal">
             <div class="field-label is-normal column is-one-quarter">
                 <label class="label">Titel</label>

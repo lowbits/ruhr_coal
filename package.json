@@ -22,6 +22,7 @@
   "dependencies": {
     "bulma": "^0.6.0",
     "font-awesome": "^4.7.0",
+    "vee-validate": "^2.0.0-beta.17",
     "vuex": "^3.0.1"
   }
 }
