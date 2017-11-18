@@ -12,4 +12,9 @@ class Location extends Model
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class)->withTimestamps();
+    }
 }
