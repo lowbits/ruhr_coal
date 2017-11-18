@@ -16,7 +16,7 @@ class GactivityController extends Controller
      */
     public function index()
     {
-        $gactivity = Gactivity::latest()->load('gactivity_user')->get();
+        $gactivity = Gactivity::latest()->with('participants', 'location')->get();
 
         return $gactivity;
     }
@@ -50,7 +50,7 @@ class GactivityController extends Controller
      */
     public function show(Gactivity $gactivity)
     {
-        return $gactivity->load('gactivity_user');
+        return $gactivity->load(['participants', 'location']);
     }
 
 

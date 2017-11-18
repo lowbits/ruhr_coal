@@ -12,4 +12,11 @@ class Gactivity extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+
+    }
+
+
 }
