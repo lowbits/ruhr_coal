@@ -15,19 +15,11 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::latest()->get();
+        $locations = Location::latest()
+            ->with('activities')
+            ->get();
 
         return $locations;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -55,17 +47,6 @@ class LocationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Location $location)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -74,7 +55,9 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $location->update($request->all());
+
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**
