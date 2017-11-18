@@ -57,7 +57,6 @@
                         <div class="select">
                             <select class="is-danger" v-model="form.category">
                                 <option>Essen & Trinken</option>
-                                <option>Zeitzeugenbericht</option>
                                 <option>Event</option>
                                 <option>Führung</option>
                             </select>
@@ -78,7 +77,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control has-icons-right">
-                        <input class="input" type="text" placeholder="Wie viel Geld" v-model="form.price" maxLength="3" id="price_input">
+                        <input class="input" type="text" placeholder="Wie viel Geld?" v-model="form.price" maxLength="3" id="price_input">
                         <span class="icon is-small is-right">
                             <i class="fa fa-eur"></i>
                         </span>
@@ -187,15 +186,15 @@
         {
             return{
                 form: {
-                    title: '',
-                    description: '',
+                    title: 1,
+                    description: 'aaf',
                     weather: 'Sonnig',
-                    user_id: '',
+                    user_id: 1,
                     opening_hours_from: '20:00',
                     opening_hours_to: '22:00',
-                    price: '',
+                    price: 1,
                     student_discount: false,
-                    location_id: '',
+                    location_id: 1,
                     person_count: 1,
                     is_public: true,
                     category: 'Zeitzeugenbericht',
@@ -205,6 +204,7 @@
         methods: {
             send: function(){
                 console.log(this.form);
+                axios.post('/api/v1/activity/create/', this.form);
             }
         }
     }
@@ -215,6 +215,6 @@
     width: 500px;
 }
 .time_input{
-        width: 100px;
-    }
+    width: 100px;
+}
 </style>

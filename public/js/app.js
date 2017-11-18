@@ -13006,16 +13006,23 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
-    activities: []
+    activities: [],
+    filterResults: []
   },
   getters: {
     getActivities: function getActivities(state) {
       return state.activities;
+    },
+    getFilterResults: function getFilterResults(state) {
+      return state.filterResults;
     }
   },
   mutations: {
     setActivities: function setActivities(state, activities) {
       state.activities = activities;
+    },
+    setFilterResults: function setFilterResults(state, results) {
+      state.filterResults = results;
     }
   },
   actions: {
@@ -13023,6 +13030,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       var commit = _ref.commit;
 
       commit('setActivities', activities);
+    },
+    setFilterResults: function setFilterResults(_ref2, results) {
+      var commit = _ref2.commit;
+
+      commit('setFilterResults', results);
     }
   }
 });
@@ -14038,8 +14050,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /*methods: {
+    import axios from 'axios';
+    import { mapActions, mapGetters } from 'vuex';
+    import activityCard from './activity/activity_card.vue';
+    import filters from './Filters.vue';
+    export default {
+    components: {
+        activityCard,
+        filters
+    },
+    methods: {
         ...mapActions({
             setActivities: 'setActivities',
+            setFilterResults: 'setFilterResults',
         })
     },
     computed: {
@@ -14053,7 +14076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             .then((res) => {
                 const activities = res.data;
                  vm.setActivities(activities);
-                console.log(activities);
+                vm.setFilterResults(activities);
             })
             .catch((err) => {
                 console.error('Error in App.vue. AJAX failed.');
@@ -14152,7 +14175,7 @@ exports = module.exports = __webpack_require__(42)(undefined);
 
 
 // module
-exports.push([module.i, "\n#form_create{\n    width: 500px;\n}\n.time_input{\n        width: 100px;\n}\n", ""]);
+exports.push([module.i, "\n#form_create{\n    width: 500px;\n}\n.time_input{\n    width: 100px;\n}\n", ""]);
 
 // exports
 
@@ -14681,21 +14704,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             form: {
-                title: '',
-                description: '',
+                title: 1,
+                description: 'aaf',
                 weather: 'Sonnig',
-                user_id: '',
+                user_id: 1,
                 opening_hours_from: '20:00',
                 opening_hours_to: '22:00',
-                price: '',
+                price: 1,
                 student_discount: false,
-                location_id: '',
+                location_id: 1,
                 person_count: 1,
                 is_public: true,
                 category: 'Zeitzeugenbericht'
@@ -14705,6 +14727,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         send: function send() {
             console.log(this.form);
+            axios.post('/api/v1/activity/create/', this.form);
         }
     }
 });
@@ -14828,8 +14851,6 @@ var render = function() {
                 [
                   _c("option", [_vm._v("Essen & Trinken")]),
                   _vm._v(" "),
-                  _c("option", [_vm._v("Zeitzeugenbericht")]),
-                  _vm._v(" "),
                   _c("option", [_vm._v("Event")]),
                   _vm._v(" "),
                   _c("option", [_vm._v("Führung")])
@@ -14861,7 +14882,7 @@ var render = function() {
               staticClass: "input",
               attrs: {
                 type: "text",
-                placeholder: "Wie viel Geld",
+                placeholder: "Wie viel Geld?",
                 maxLength: "3",
                 id: "price_input"
               },

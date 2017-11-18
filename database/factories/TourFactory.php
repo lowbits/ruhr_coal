@@ -1,6 +1,7 @@
 <?php
 
-use App\Activity;
+use App\Tour;
+use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -14,19 +15,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Activity::class, function (Faker $faker) {
+$factory->define(Tour::class, function (Faker $faker) {
 
     return [
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(),
-        'weather' => 'bei trockenem Wetter',
-        'user_id' => factory('App\User')->create()->id,
-        'opening_hours' => 'von 10:00 Uhr – 19:00 Uhr',
-        'price' => mt_rand() / mt_getrandmax() * random_int(10, 50),
-        'student_discount' => random_int(0,1),
-        'location_id' => factory('App\Location')->create()->id,
-        'person_count' => random_int(1, 10),
-        'is_public' => random_int(0, 1),
-        'category' => $faker->word
+        'duration' => random_int(10, 300),
+        'user_id' => User::inRandomOrder()->limit(1)->get()->first()->id
     ];
 });

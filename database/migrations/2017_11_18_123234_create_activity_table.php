@@ -22,7 +22,7 @@ class CreateActivityTable extends Migration
             $table->unsignedInteger('location_id');
             $table->string('opening_hours')->nullable();
             $table->string('category')->nullable();
-            $table->float('price')->nullable();
+            $table->float('price', 10, 2)->nullable();
             $table->boolean('student_discount')->nullable();
             $table->integer('person_count')->nullable();
             $table->boolean('is_public')->nullable();
