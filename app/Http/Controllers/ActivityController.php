@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Location;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -130,7 +131,7 @@ class ActivityController extends Controller
     }
 
     protected function getActivities(){
-        $activites = Activity::latest();
+        $activites = Activity::latest()->with('location');
 
         return $activites->get();
 
