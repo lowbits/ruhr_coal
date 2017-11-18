@@ -14687,24 +14687,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14718,19 +14700,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 opening_hours_to: '22:00',
                 price: 1,
                 student_discount: false,
+                location: '',
                 location_id: 1,
                 person_count: 1,
                 is_public: true,
                 category: 'Essen & Trinken'
-            }
+            },
+            locations: [{
+                title: 'Duisburg'
+            }]
         };
     },
     methods: {
         send: function send() {
+            //opening hours
             this.form.opening_hours = "von " + this.form.opening_hours_from + " Uhr - " + this.form.opening_hours_to + " Uhr";
+            //get location id
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.locations[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var loc = _step.value;
+
+                    console.log(this.form.location);
+                    if (loc.title == this.form.location) {
+                        console.log('found');
+                        this.form.location_id = loc.id;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
             console.log(this.form);
-            axios.post('/api/v1/activity/create/', this.form);
+            axios.post('/api/v1/activity', this.form).then(function (res) {}).catch(function (err) {
+                console.error('Error in App.vue. AJAX failed.');
+                new Error(err);
+            });
         }
+    },
+    created: function created() {
+        var _this = this;
+
+        console.log('created');
+        axios.get('/api/v1/location').then(function (res) {
+            var loc = res.data;
+            console.log(res.data);
+            _this.locations = loc;
+        }).catch(function (err) {
+            console.error('Error in App.vue. AJAX failed.');
+            new Error(err);
+        });
     }
 });
 
@@ -14990,7 +15023,8 @@ var render = function() {
                   attrs: {
                     type: "text",
                     placeholder: "Wo ist deine Aktivität?",
-                    required: ""
+                    required: "",
+                    list: "suggestions"
                   },
                   domProps: { value: _vm.form.location },
                   on: {
@@ -15002,6 +15036,14 @@ var render = function() {
                     }
                   }
                 }),
+                _vm._v(" "),
+                _c(
+                  "datalist",
+                  { attrs: { id: "suggestions" } },
+                  _vm._l(_vm.locations, function(value) {
+                    return _c("option", { domProps: { value: value.title } })
+                  })
+                ),
                 _vm._v(" "),
                 _vm._m(7, false, false)
               ])
@@ -15300,7 +15342,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field is-grouped" }, [
+    return _c("div", { staticClass: "field is-grouped is-grouped-centered" }, [
       _c("p", { staticClass: "control" }, [
         _c("input", {
           staticClass: "button",

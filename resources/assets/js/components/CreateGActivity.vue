@@ -1,3 +1,4 @@
+<!--Create activities for real G's-->
 <template>
     <div id="form_create" class="form">
         <form v-on:submit.prevent="send">
