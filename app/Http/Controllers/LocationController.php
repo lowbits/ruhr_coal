@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLocationRequest;
 use App\Location;
 use Illuminate\Http\Request;
 
@@ -14,28 +15,24 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $locations = Location::latest()
+            ->with('activities')
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $locations;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreLocationRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLocationRequest $request)
     {
-        //
+        $request->store();
+
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**
@@ -46,18 +43,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Location $location)
-    {
-        //
+        return $location;
     }
 
     /**
@@ -69,7 +55,9 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $location->update($request->all());
+
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**
@@ -80,6 +68,8 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+
+        return response()->json(['success' => 'success'], 200);
     }
 }

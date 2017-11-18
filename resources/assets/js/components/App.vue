@@ -1,17 +1,22 @@
 <template>
     <div>
         <filters></filters>
+        <section class="section">
+            <div class="container is-fluid">
+                <activityCard v-for="activity in activities" :key="activity.id" :activity="activity"></activityCard>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
-    import Filters from './Filters.vue'
+    import activityCard from './activity/activity_card.vue';
 
     export default {
         components: {
-            Filters
+            activityCard
         },
         methods: {
             ...mapActions({

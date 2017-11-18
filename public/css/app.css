@@ -3882,7 +3882,7 @@ a.has-text-danger:focus {
 }
 
 .has-text-grey {
-  color: #7a7a7a !important;
+  color: #999 !important;
 }
 
 .has-text-grey-light {
@@ -5650,7 +5650,7 @@ a.box:active {
 .button.is-static {
   background-color: whitesmoke;
   border-color: #dbdbdb;
-  color: #7a7a7a;
+  color: #999;
   -webkit-box-shadow: none;
           box-shadow: none;
   pointer-events: none;
@@ -6065,27 +6065,27 @@ a.box:active {
   border-color: whitesmoke;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #7a7a7a;
+  color: #999;
 }
 
 .input[disabled]::-moz-placeholder,
 .textarea[disabled]::-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .input[disabled]::-webkit-input-placeholder,
 .textarea[disabled]::-webkit-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .input[disabled]:-moz-placeholder,
 .textarea[disabled]:-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .input[disabled]:-ms-input-placeholder,
 .textarea[disabled]:-ms-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .input[type="search"],
@@ -6347,7 +6347,7 @@ a.box:active {
 
 .checkbox[disabled],
 .radio[disabled] {
-  color: #7a7a7a;
+  color: #999;
   cursor: not-allowed;
 }
 
@@ -6467,23 +6467,23 @@ a.box:active {
   border-color: whitesmoke;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #7a7a7a;
+  color: #999;
 }
 
 .select select[disabled]::-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .select select[disabled]::-webkit-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .select select[disabled]:-moz-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .select select[disabled]:-ms-input-placeholder {
-  color: rgba(122, 122, 122, 0.3);
+  color: rgba(153, 153, 153, 0.3);
 }
 
 .select select::-ms-expand {
@@ -6645,7 +6645,7 @@ a.box:active {
 }
 
 .select.is-disabled::after {
-  border-color: #7a7a7a;
+  border-color: #999;
 }
 
 .select.is-fullwidth {
@@ -7570,7 +7570,7 @@ a.box:active {
 }
 
 .control.has-icon .input:focus + .icon {
-  color: #7a7a7a;
+  color: #999;
 }
 
 .control.has-icon .input.is-small + .icon {
@@ -7605,7 +7605,7 @@ a.box:active {
 .control.has-icons-left .select:focus ~ .icon,
 .control.has-icons-right .input:focus ~ .icon,
 .control.has-icons-right .select:focus ~ .icon {
-  color: #7a7a7a;
+  color: #999;
 }
 
 .control.has-icons-left .input.is-small ~ .icon,
@@ -9301,7 +9301,7 @@ a.dropdown-item.is-active {
 }
 
 .menu-label {
-  color: #7a7a7a;
+  color: #999;
   font-size: 0.75em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -11009,7 +11009,7 @@ a.navbar-link.is-active {
   border-color: #dbdbdb;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #7a7a7a;
+  color: #999;
   opacity: 0.5;
 }
 
@@ -11259,7 +11259,7 @@ label.panel-block:hover {
   text-align: center;
   vertical-align: top;
   width: 1em;
-  color: #7a7a7a;
+  color: #999;
   margin-right: 0.75em;
 }
 

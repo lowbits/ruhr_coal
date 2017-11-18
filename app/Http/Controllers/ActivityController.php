@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Location;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -19,15 +20,6 @@ class ActivityController extends Controller
         return $activites;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -56,7 +48,7 @@ class ActivityController extends Controller
             'is_public' => request('is_public'),
             'category' => request('category')
         ]);
-        //dd($activity);
+
         return response()->json(['success' => 'success'], 200);
     }
 
@@ -71,16 +63,7 @@ class ActivityController extends Controller
         return $activity;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Activity $activity)
-    {
 
-    }
 
     /**
      * Update the specified resource in storage.
@@ -91,7 +74,26 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
-        //
+
+        $this->validate($request, [
+            'title' => 'required|alpha',
+            'user_id' => 'required|exists:users,id',
+            'location_id' => 'required|exists:locations,id'
+        ]);
+
+        $activity->update([
+            'title' => request('title'),
+            'description' => request('description'),
+            'weather' => request('channel_id'),
+            'user_id' => auth()->id(),
+            'opening_hours' => request('opening_hours'),
+            'price' => request('price'),
+            'student_discount' => request('student_discount'),
+            'location_id' => request('location_id'),
+            'person_count' => request('person_count'),
+            'is_public' => request('is_public'),
+            'category' => request('category')
+        ]);
     }
 
     /**
@@ -102,11 +104,16 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        //
+
+        $activity->delete();
+
+        return response()->json(['success' => 'Activity deleted'], 200);
+
+
     }
 
     protected function getActivities(){
-        $activites = Activity::latest();
+        $activites = Activity::latest()->with('location');
 
         return $activites->get();
 
