@@ -1,7 +1,7 @@
 <template>
     <section class="section">
         <div class="container is-fluid">
-            <activityCard v-for="activity in activities" :key="activity.id"></activityCard>
+            <activityCard v-for="activity in activities" :key="activity.id" :activity="activity"></activityCard>
         </div>
     </section>
 </template>
