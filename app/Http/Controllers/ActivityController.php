@@ -39,8 +39,8 @@ class ActivityController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|alpha',
-            'user_id' => 'required|exists:user,id',
-            'location_id' => 'required|exists:location,id'
+            'user_id' => 'required|exists:users,id',
+            'location_id' => 'required|exists:locations,id'
         ]);
 
         $activity = Activity::create([
@@ -56,8 +56,8 @@ class ActivityController extends Controller
             'is_public' => request('is_public'),
             'category' => request('category')
         ]);
-
-        return response($activity->id, 200);
+        //dd($activity);
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**
