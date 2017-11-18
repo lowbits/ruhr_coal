@@ -64,24 +64,12 @@ class ActivityController extends Controller
     {
 
         $this->validate($request, [
-            'title' => 'required|alpha',
+            'title' => 'required',
             'user_id' => 'required|exists:users,id',
             'location_id' => 'required|exists:locations,id'
         ]);
 
-        $activity->update([
-            'title' => request('title'),
-            'description' => request('description'),
-            'weather' => request('channel_id'),
-            'user_id' => auth()->id(),
-            'opening_hours' => request('opening_hours'),
-            'price' => request('price'),
-            'student_discount' => request('student_discount'),
-            'location_id' => request('location_id'),
-            'person_count' => request('person_count'),
-            'is_public' => request('is_public'),
-            'category' => request('category')
-        ]);
+        $activity->update($request->all());
     }
 
     /**
