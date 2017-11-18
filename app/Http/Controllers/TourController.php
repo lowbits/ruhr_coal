@@ -14,18 +14,12 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
+        $tour = Tour::latest()->get();
+
+        return $tour;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +29,21 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required|alpha',
+            'description' => 'required|alpha',
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $tour = $this->create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'duration' => request('duration'),
+            'user_id' => auth()->id(),
+        ]);
+
+        return response()->json(['success' => 'success'], 200);
+
     }
 
     /**
@@ -46,19 +54,9 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+        return $tour;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Tour  $tour
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tour $tour)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +67,18 @@ class TourController extends Controller
      */
     public function update(Request $request, Tour $tour)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required|alpha',
+            'description' => 'required|alpha',
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $tour->update([
+            'title' => request('title'),
+            'description' => request('description'),
+            'duration' => request('duration'),
+            'user_id' => auth()->id(),
+        ]);
     }
 
     /**
@@ -80,6 +89,9 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+       $tour->delete();
+
+       return response()->json(['success' => 'Tour deleted'], 200);
+
     }
 }
