@@ -25,6 +25,7 @@ Route::prefix('api/v1/')->group(function() {
     Route::post('gactivity/participate/{gactivity}', 'GactivityController@participate');
     Route::post('gactivity/unparticipate/{gactivity}', 'GactivityController@unparticipate');
     Route::resource('location', 'LocationController');
+    Route::get('allactivities', 'ActivityController@allactivities');
 });
 
 Route::middleware(['auth'])->group(function () {

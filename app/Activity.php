@@ -8,6 +8,8 @@ class Activity extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['modeltype'];
+
     public function location()
     {
         return $this->belongsTo(Location::class);
@@ -18,5 +20,8 @@ class Activity extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    public function getModeltypeAttribute()
+    {
+        return $this->attributes['modeltype'] = 'activity';
+    }
 }
