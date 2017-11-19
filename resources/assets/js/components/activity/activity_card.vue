@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card" v-on:click="toggleModal">
-            <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'">Geführte Route</span>
+            <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'" v-bind:class="[(participated) ? 'participatedFlag' : '']">Geführte Route</span>
             <div class="card-content">
                 <div class="activityImg" :style="{ backgroundImage: 'url(' + activity.location.photo_url + ')' }"></div>
                 <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
@@ -318,5 +318,9 @@
         padding: 2px 10px;
 
         z-index: 1;
+
+        &.participatedFlag{
+            background-color: #ff3860;
+        }
     }
 </style>
