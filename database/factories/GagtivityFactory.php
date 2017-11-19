@@ -14,7 +14,7 @@ $factory->define(Gactivity::class, function (Faker $faker) {
         'min_person_count' => $pcount = random_int(1, 10),
         'max_person_count' => $pcount + random_int(1, 20),
         'is_public' => random_int(0, 1),
-        'rhythm' => array_rand(['wöchentlich', 'einmalig', 'zweiwöchentlich']),
+        'rhythm' => collect(['wöchentlich', 'einmalig', 'zweiwöchentlich'])->random(),
         'date' => Carbon::now()->addDay(10),
         'category' => $faker->word
     ];
