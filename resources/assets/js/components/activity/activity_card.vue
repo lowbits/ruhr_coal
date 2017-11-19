@@ -108,7 +108,7 @@
         ],
         data() {
             return {
-                participated: false,
+                participated: null,
                 rating: 0,
                 modalIsActive: false,
                 notificationIsActive: false,
@@ -163,11 +163,14 @@
 
             if (this.signedIn()) {
             if (this.activity.participants) {
-                var participans = this.activity.participants;
-                for (let i = 0; i < participans.length; i++) {
-                    if (window.Application.user.id == participans[i].id) {
-                        this.participated == true;
-                        console.log('true');
+                // var participans = this.activity.participants;
+                for (let i = 0; i < this.activity.participants.length; i++) {
+                    if (window.Application.user.id == this.activity.participants[i].id) {
+                        this.participated = true;
+                        console.log('participated', this.participated);
+                        break;
+                    }else{
+                        this.participated = false;
                     }
                 }
             }
