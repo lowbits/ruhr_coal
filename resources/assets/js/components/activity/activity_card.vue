@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card" v-on:click="toggleModal">
-            <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'">Geführte Route</span>
+            <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'" v-bind:class="[(participated) ? 'participatedFlag' : '']">Geführte Route</span>
             <div class="card-content">
                 <div class="activityImg" :style="{ backgroundImage: 'url(' + activity.location.photo_url + ')' }"></div>
                 <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
@@ -112,7 +112,7 @@
         ],
         data() {
             return {
-                participated: false,
+                participated: null,
                 rating: 0,
                 modalIsActive: false,
                 notificationIsActive: false,
@@ -167,11 +167,14 @@
 
             if (this.signedIn()) {
             if (this.activity.participants) {
-                var participans = this.activity.participants;
-                for (let i = 0; i < participans.length; i++) {
-                    if (window.Application.user.id == participans[i].id) {
-                        this.participated == true;
-                        console.log('true');
+                // var participans = this.activity.participants;
+                for (let i = 0; i < this.activity.participants.length; i++) {
+                    if (window.Application.user.id == this.activity.participants[i].id) {
+                        this.participated = true;
+                        console.log('participated', this.participated);
+                        break;
+                    }else{
+                        this.participated = false;
                     }
                 }
             }
@@ -319,5 +322,9 @@
         padding: 2px 10px;
 
         z-index: 1;
+
+        &.participatedFlag{
+            background-color: #ff3860;
+        }
     }
 </style>
