@@ -16,7 +16,7 @@ class ActivityTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Activity::class, 50)->create();
+        factory(Activity::class, 10)->create();
 
         factory(Tour::class, 10)->create()->each(function($tour) {
             $location_count = random_int(2, 10);
@@ -25,7 +25,7 @@ class ActivityTableSeeder extends Seeder
             $tour->locations()->attach($locations);
         });
 
-        factory(Gactivity::class, 20)->create()->each(function($gactivity) {
+        factory(Gactivity::class, 10)->create()->each(function($gactivity) {
             $user_count = random_int(2, 10);
             $users = User::inRandomOrder()->limit($user_count)->get();
 

@@ -16,8 +16,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Location::class, function (Faker $faker) {
     $cities = collect([
-        'Bochum', 'Bottrop', 'Dortmund', 'Duisburg','Essen', 'Gelsenkirchen',
-        'Recklinghausen' , 'Mülheim an der Ruhr', 'Oberhausen'
+        'Bochum', 'Bottrop', 'Dortmund', 'Duisburg', 'Essen', 'Gelsenkirchen',
+        'Recklinghausen', 'Mülheim an der Ruhr', 'Oberhausen'
     ]);
 
     return [
@@ -33,6 +33,6 @@ $factory->define(Location::class, function (Faker $faker) {
         'adress' => $faker->address,
         'url' => $faker->url,
         'telephone' => $faker->phoneNumber,
-        'photo_url' => 'http://placehold.it/1000x1000'
+        'photo_url' => 'https://picsum.photos/300/300/?random=' . random_int(0,1000),
     ];
 });
