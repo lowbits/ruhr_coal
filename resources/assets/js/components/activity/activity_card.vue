@@ -18,7 +18,7 @@
             <div class="modal-background" v-on:click="toggleModal"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">{{ activity.title }}</p>
+                    <p class="modal-card-title">{{ activity.title }} <img src="img/logo_ruhr_coal.png" alt="" class="coalRating" v-for="(item, index) in 5" v-bind:class="[((index+1) <= rating) ? 'rated' : '']"></p>
                     <button class="delete" aria-label="close" v-on:click="toggleModal"></button>
                 </header>
                 <section class="modal-card-body">
@@ -95,6 +95,7 @@
         ],
         data() {
             return {
+                rating: 0,
                 modalIsActive: false,
                 notificationIsActive: false
             }
@@ -120,6 +121,9 @@
         },
         created() {
             console.log(this.activity);
+
+            this.rating = Math.floor((Math.random() * 5) + 1);
+
         }
     }
 </script>
@@ -206,6 +210,14 @@
             -ms-transition: opacity .5s ease, visibility 0s ease 0s;
             -o-transition: opacity .5s ease, visibility 0s ease 0s;
             transition: opacity .5s ease, visibility 0s ease 0s;
+        }
+    }
+
+    .coalRating{
+        opacity: .3;
+
+        &.rated{
+            opacity: 1;
         }
     }
 </style>
