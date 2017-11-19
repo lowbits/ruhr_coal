@@ -20,7 +20,7 @@
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
     import activityCard from './activity/activity_card.vue';
-    import addActivityButton from './activity/addNewActivityButton.vue';
+    import addActivityButton from './activities/addNewActivityButton.vue';
     import filters from './Filters.vue';
 
     export default {
