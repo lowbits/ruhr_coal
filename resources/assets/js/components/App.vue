@@ -35,7 +35,7 @@
         created() {
             const vm = this;
 
-            axios.get('http://localhost:8000/api/v1/activity')
+            axios.get('http://localhost:8000/api/v1/allactivities')
                 .then((res) => {
                     const activities = res.data;
 
