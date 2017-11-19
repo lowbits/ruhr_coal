@@ -196,7 +196,7 @@
             <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                     <!--v-on:submit="this.send"-->
-                    <input type="submit" class="button" value="Aktivität erstellen">
+                    <input type="submit" class="button is-success" value="Aktivität erstellen">
                 </p>
             </div>
         </form>
@@ -209,14 +209,14 @@
         {
             return{
                 form: {
-                    title: '',
-                    description: 'aaf',
+                    title: 'Hier steht dein Titel',
+                    description: 'Hier steht eine interessante Beschreibung, die richtig Lust auf die Aktivität macht',
                     weather: 'ab 42°C mit Sandalen und Socken',
                     user_id: 1,
                     opening_hours_from: '20:00',
                     opening_hours_to: '22:00',
                     price: 1,
-                    location: '',
+                    location: 'Essen',
                     location_id: 1,
                     person_count: 1,
                     is_public: true,

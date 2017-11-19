@@ -92,7 +92,7 @@
                     <!--TODO: activity participated ins Objekt eintragen um mich auch wieder abzumelden und im if ändern -->
                     <button class="button is-success" v-on:click="participateActivity" v-if="activity.modeltype == 'gactivity' && !participated">An dieser Activity teilnehmen</button>
                     <button class="button is-danger" v-on:click="unparticipateActivity" v-else-if="activity.modeltype == 'gactivity' && participated">Mich von dieser Activity abmelden</button>
-                    <button class="button" v-on:click="toggleModal">Abbrechen</button>
+                    <button class="button is-danger is-outlined" v-on:click="toggleModal">Abbrechen</button>
                 </footer>
             </div>
         </div>
