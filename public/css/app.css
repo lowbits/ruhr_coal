@@ -14514,3 +14514,7 @@ body {
   background: #194254;
 }
 
+.navbar .container.is-fluid {
+  margin-left: 15px;
+}
+

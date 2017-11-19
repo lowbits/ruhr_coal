@@ -87,6 +87,8 @@
             }
           }
         }
+
+        this.filterResults();
       },
       filterResults() {
         let results = this.activities.filter((activity) => {
