@@ -71,7 +71,7 @@
                                 </table>
                             </div>
                             <div class="column">
-                                <div class="columns">
+                                <div class="columns is-multiline">
                                     <div class="column is-4">
                                         <img v-bind:src="activity.location.photo_url" class="image"/>
                                     </div>
@@ -82,6 +82,10 @@
                                             {{ activity.location.city }}<br/>
                                             {{ activity.location.zip }}
                                         </p>
+                                    </div>
+                                    <div class="column is-12">
+                                        <img src="/img/location.PNG" class="image"/>
+
                                     </div>
                                 </div>
                             </div>
