@@ -71,6 +71,7 @@
         },
       }
     },
+    props: ['setFilterWasUsed'],
     methods: {
       ...mapActions({
           setFilterResults: 'setFilterResults',
@@ -91,6 +92,8 @@
       },
       filterResults() {
         let results = this.activities.filter((activity) => {
+          this.setFilterWasUsed();
+
           // Values to test
           const activityTitle = activity.title.toLowerCase();
           const activityDescription = activity.description.toLowerCase();
@@ -293,5 +296,3 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 </style>
-
-
