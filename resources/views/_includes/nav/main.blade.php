@@ -6,7 +6,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
                         <img src="{{asset('img/logo_ruhr_coal.png')}}" alt="Bulma: a modern CSS framework based on Flexbox" width="" height="">
-                        <span class="title">Ruhr Kohle</span>
+                        <span class="title">Pottivity</span>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroA">
                   <span></span>
