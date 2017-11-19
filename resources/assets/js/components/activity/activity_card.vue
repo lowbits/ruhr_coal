@@ -7,13 +7,13 @@
                 <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
                 <div class="city"><span class="cardLabel">Stadt</span><br/>{{ activity.location.city }}</div>
                 <div class="category"><span class="cardLabel">Kategorie</span><br/>{{ activity.category }}</div>
-                <div class="price"><span class="cardLabel">Preis</span><br/>{{ (activity.price === null) ? 'Kostenlos' : activity.price }}</div>
+                <div class="price"><span class="cardLabel">Preis</span><br/>{{ (activity.price === null) ? 'Kostenlos' : activity.price + ' €' }}</div>
                 <div class="detailButton" v-on:click="toggleModal"><span class="fa fa-chevron-right"></span></div>
             </div>
         </div>
-        <div class="notification is-success" v-bind:class="{'is-active': notificationIsActive}">
+        <div class="notification" v-bind:class="[(notificationIsActive) ? 'is-active' : '', (notification.type == 'anmelden') ? 'is-success' : 'is-danger']">
             <button class="delete" v-on:click="toggleNotification"></button>
-            Sie nehmen an der Activity {{ activity.title }} teil.
+            {{ notification.text }}
         </div>
         <div class="modal" v-bind:class="{ 'is-active': modalIsActive }">
             <div class="modal-background" v-on:click="toggleModal"></div>
@@ -79,7 +79,9 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" v-on:click="participateActivity" v-if="activity.modeltype == 'gactivity'">An dieser Activity teilnehmen</button>
+                    <!--TODO: activity participated ins Objekt eintragen um mich auch wieder abzumelden und im if ändern -->
+                    <button class="button is-success" v-on:click="participateActivity" v-if="activity.modeltype == 'gactivity' && !participated">An dieser Activity teilnehmen</button>
+                    <button class="button is-danger" v-on:click="unparticipateActivity" v-else-if="activity.modeltype == 'gactivity' && participated">Mich von dieser Activity abmelden</button>
                     <button class="button" v-on:click="toggleModal">Cancel</button>
                 </footer>
             </div>
@@ -89,16 +91,21 @@
 </template>
 
 <script>
-
+    import axios from 'axios';
     export default {
         props: [
             "activity"
         ],
         data() {
             return {
+                participated: false,
                 rating: 0,
                 modalIsActive: false,
-                notificationIsActive: false
+                notificationIsActive: false,
+                notification: {
+                    text: '',
+                    type: ''
+                }
             }
         },
         methods: {
@@ -106,14 +113,29 @@
                 this.modalIsActive = !this.modalIsActive;
             },
             participateActivity() {
-                this.toggleModal();
-                this.toggleNotification();
-                console.log('participate Activity');
+                // this.toggleModal();
+                this.toggleNotification('anmelden');
+                axios.post('http://localhost:8000/api/v1/gactivity/participate/'+this.activity.id)
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+                    .catch((err) => {
+                        console.log('error', err);
+                })
             },
-            toggleNotification() {
+            unparticipateActivity() {
+                this.toggleNotification('abmelden');
+            },
+            toggleNotification(type) {
+                const notifications = {
+                    'anmelden': 'Sie nehmen an der Activity ' + this.activity.title + ' teil.',
+                    'abmelden': 'Sie haben sich von der Activity ' + this.activity.title + ' abgemeldet.'
+                };
                 if(!this.notificationIsActive) {
                     setTimeout(this.closeNotification, 3000);
                 }
+                this.notification.text = notifications[type];
+                this.notification.type = type;
                 this.notificationIsActive = !this.notificationIsActive;
             },
             closeNotification() {
@@ -202,6 +224,7 @@
     }
 
     .notification{
+        z-index: 9999999;
         opacity: 0;
         visibility: hidden;
         position: fixed;
