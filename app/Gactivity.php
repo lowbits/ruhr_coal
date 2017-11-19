@@ -20,6 +20,11 @@ class Gactivity extends Model
 
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getModeltypeAttribute()
     {
         return $this->attributes['modeltype'] = 'gactivity';

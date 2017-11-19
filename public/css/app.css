@@ -3886,7 +3886,7 @@ a.has-text-danger:focus {
 }
 
 .has-text-grey-light {
-  color: #b5b5b5 !important;
+  color: #ececec !important;
 }
 
 .has-text-grey-lighter {
@@ -4496,7 +4496,7 @@ a.box:active {
 
 .button:hover,
 .button.is-hovered {
-  border-color: #b5b5b5;
+  border-color: #ececec;
   color: #363636;
 }
 
@@ -6043,7 +6043,7 @@ a.box:active {
 .input.is-hovered,
 .textarea:hover,
 .textarea.is-hovered {
-  border-color: #b5b5b5;
+  border-color: #ececec;
 }
 
 .input:focus,
@@ -6450,7 +6450,7 @@ a.box:active {
 
 .select select:hover,
 .select select.is-hovered {
-  border-color: #b5b5b5;
+  border-color: #ececec;
 }
 
 .select select:focus,
@@ -10985,7 +10985,7 @@ a.navbar-link.is-active {
 .pagination-previous:hover,
 .pagination-next:hover,
 .pagination-link:hover {
-  border-color: #b5b5b5;
+  border-color: #ececec;
   color: #363636;
 }
 
@@ -11027,7 +11027,7 @@ a.navbar-link.is-active {
 }
 
 .pagination-ellipsis {
-  color: #b5b5b5;
+  color: #ececec;
   pointer-events: none;
 }
 
@@ -11423,7 +11423,7 @@ label.panel-block:hover {
 
 .tabs.is-toggle a:hover {
   background-color: whitesmoke;
-  border-color: #b5b5b5;
+  border-color: #ececec;
   z-index: 2;
 }
 
@@ -14508,5 +14508,18 @@ label.panel-block:hover {
 
 body {
   font-family: Raleway;
+}
+
+.hero .navbar {
+  background: #194254;
+}
+
+.navbar .container.is-fluid {
+  margin-left: 15px;
+}
+
+.hero.is-dark a.navbar-item.is-active,
+.hero.is-dark a.navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 

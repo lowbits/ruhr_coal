@@ -2,7 +2,7 @@
     <!-- Hero head: will stick at the top -->
     <div class="hero-head">
         <nav class="navbar">
-            <div class="container">
+            <div class="container is-fluid">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
                         <img src="{{asset('img/logo_ruhr_coal.png')}}" alt="Bulma: a modern CSS framework based on Flexbox" width="" height="">

@@ -95,7 +95,7 @@ class ActivityController extends Controller
     public function allactivities()
     {
         $act= Activity::with(['user', 'location'])->get();
-        $gact = Gactivity::with(['participants', 'location'])->get();
+        $gact = Gactivity::with(['user', 'participants', 'location'])->get();
 
         $collection = collect([$act, $gact])
             ->flatten()

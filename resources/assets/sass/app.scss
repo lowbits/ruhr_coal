@@ -14,3 +14,18 @@
 body {
   font-family: Raleway;
 }
+
+.hero .navbar {
+  background: #194254;
+}
+
+.navbar .container.is-fluid {
+  margin-left: 15px;
+}
+
+.hero.is-dark a.navbar-item {
+  &.is-active,
+  &:hover {
+    background-color: rgba(#fff, .1);
+  }
+}
