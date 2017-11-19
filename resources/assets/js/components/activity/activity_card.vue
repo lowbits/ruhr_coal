@@ -150,6 +150,9 @@
             },
             closeNotification() {
                 this.notificationIsActive = false;
+            },
+            signedIn(){
+                return window.Application.signedIn;
             }
         },
         created() {
@@ -157,6 +160,18 @@
 
             this.rating = Math.floor((Math.random() * 5) + 1);
 
+
+            if (this.signedIn()) {
+            if (this.activity.participants) {
+                var participans = this.activity.participants;
+                for (let i = 0; i < participans.length; i++) {
+                    if (window.Application.user.id == participans[i].id) {
+                        this.participated == true;
+                        console.log('true');
+                    }
+                }
+            }
+        }
         }
     }
 </script>
