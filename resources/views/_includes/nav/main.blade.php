@@ -27,7 +27,7 @@
                             <span class="navbar-item">
                             <div class="dropdown is-hoverable">
                                 <div class="dropdown-trigger">
-                                    <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <button class="button is-white is-outlined" aria-haspopup="true" aria-controls="dropdown-menu4">
                                         <span>Hallo {{Auth::user()->name}}</span>
                                         <span class="icon is-small">
                                         <i class="fa fa-angle-down" aria-hidden="true"></i>

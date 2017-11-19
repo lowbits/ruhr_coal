@@ -1,6 +1,5 @@
 <template>
     <div id="form_create" class="form">
-        <h1>Aktivität erstellen</h1>
         <form v-on:submit.prevent="send">
             <!--Title-->
             <div class="field is-horizontal">
@@ -153,11 +152,6 @@
                     <!--v-on:submit="this.send"-->
                     <input type="submit" class="button" value="Aktivität erstellen">
                 </p>
-                <p class="control">
-                    <a class="button is-light">
-                        Abbrechen
-                    </a>
-                </p>
             </div>
         </form>
     </div>
@@ -217,7 +211,7 @@
                 .then((res) => {
                     this.form = {
                         title: '',
-                            description: 'aaf',
+                        description: 'aaf',
                         weather: 'ab 42°C mit Sandalen und Socken',
                         user_id: 1,
                         opening_hours_from: '20:00',

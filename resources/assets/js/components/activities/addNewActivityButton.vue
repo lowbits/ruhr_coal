@@ -7,7 +7,8 @@
             <div class="modal-background" v-on:click="toggleModal"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Erstellen</p>
+                    <p class="modal-card-title" v-if="activeCreateState == 'activity'">Activity erstellen</p>
+                    <p class="modal-card-title" v-else>Geführte Activity erstellen</p>
                     <button class="delete" aria-label="close" v-on:click="toggleModal"></button>
                 </header>
                 <section class="modal-card-body">

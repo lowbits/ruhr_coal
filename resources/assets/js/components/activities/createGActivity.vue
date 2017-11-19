@@ -1,7 +1,6 @@
 <!-- Create acivities for the real Gs-->
 <template>
     <div id="form_create" class="form">
-        <h1>Geführte Aktivität erstellen</h1>
         <form v-on:submit.prevent="send">
             <!--Title-->
             <div class="field is-horizontal">
@@ -199,11 +198,6 @@
                     <!--v-on:submit="this.send"-->
                     <input type="submit" class="button" value="Aktivität erstellen">
                 </p>
-                <p class="control">
-                    <a class="button is-light">
-                        Abbrechen
-                    </a>
-                </p>
             </div>
         </form>
     </div>
@@ -278,6 +272,24 @@
                     rhythm: this.form.rhythm,
                     date: this.form.date
                 }).then((res) => {
+                    this.form = {
+                        title: '',
+                        description: 'aaf',
+                        weather: 'ab 42°C mit Sandalen und Socken',
+                        user_id: 1,
+                        opening_hours_from: '20:00',
+                        opening_hours_to: '22:00',
+                        price: 1,
+                        location: '',
+                        location_id: 1,
+                        person_count: 1,
+                        is_public: true,
+                        category: 'Führung',
+                        date: '2017-11-17',
+                        rhythm: 'einmalig',
+                        min_person_count: 1,
+                        max_person_count: 1
+                    }
                 })
                     .catch((err) => {
                         console.error('Error in App.vue. AJAX failed.');
