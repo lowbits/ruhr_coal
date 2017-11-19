@@ -126,10 +126,10 @@
                     <div class="field">
                         <div class="controlhas-icons-right">
                             <div class="select">
-                                <select class="is-danger" v-model="form.weather" required>
-                                    <option>ab 42°C mit Sandalen und Socken</option>
-                                    <option>bei jedem Wetter</option>
-                                    <option>bei trockenem Wetter</option>
+                                <select class="is-danger" v-model="form.rhythm" required>
+                                    <option>einmalig</option>
+                                    <option>wöchentlich</option>
+                                    <option>zweiwöchentlich</option>
                                 </select>
                                 <span class="icon is-small is-right">
                     <i class="fa wi-day-sunny"></i>
@@ -139,15 +139,31 @@
                     </div>
                 </div>
             </div>
-            <!--Personenzahl-->
+            <!--Personenzahl min-->
             <div class="field is-horizontal">
                 <div class="field-label is-normal column is-one-quarter">
-                    <label class="label">Personenzahl</label>
+                    <label class="label">Personen min.</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <div class="control has-icons-right">
-                            <input class="input" type="text" placeholder="Für wie viele Personen ist deine Aktivität?" maxLength="2" v-model="form.person_count" required>
+                            <input class="input" type="text" placeholder="Für wie viele Personen ist deine Aktivität mindestens?" maxLength="2" v-model="form.min_person_count" required>
+                            <span class="icon is-small is-right">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Personenzahl max-->
+            <div class="field is-horizontal">
+                <div class="field-label is-normal column is-one-quarter">
+                    <label class="label">Personen max.</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control has-icons-right">
+                            <input class="input" type="text" placeholder="Für wie viele Personen ist deine Aktivität maximal?" maxLength="2" v-model="form.max_person_count" required>
                             <span class="icon is-small is-right">
                             <i class="fa fa-users"></i>
                         </span>
@@ -211,7 +227,10 @@
                     person_count: 1,
                     is_public: true,
                     category: 'Führung',
-                    date: '2017-11-17'
+                    date: '2017-11-17',
+                    rhythm: 'einmalig',
+                    min_person_count: 1,
+                    max_person_count: 1
                 },
                 locations: [{
                     title: 'Duisburg'
@@ -231,7 +250,34 @@
                     }
                 }
                 console.log(this.form);
-                axios.post('/api/v1/gactivity', this.form).then((res) => {
+                /*
+                $table->increments('id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('location_id');
+            $table->string('category')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->integer('max_person_count')->nullable();
+            $table->integer('min_person_count')->nullable();
+            $table->boolean('is_public')->nullable();
+            $table->string('rhythm')->nullable();
+            $table->dateTime('date')->nullable();
+
+                 */
+                axios.post('/api/v1/gactivity', {
+                    title: this.form.title,
+                    description: this.form.description,
+                    user_id: this.form.user_id,
+                    location_id: this.form.location_id,
+                    category: this.form.category,
+                    price: this.form.price,
+                    min_person_count: this.form.min_person_count,
+                    max_person_count: this.form.max_person_count,
+                    is_public: this.form.is_public,
+                    rhythm: this.form.rhythm,
+                    date: this.form.date
+                }).then((res) => {
                 })
                     .catch((err) => {
                         console.error('Error in App.vue. AJAX failed.');
@@ -240,11 +286,9 @@
             }
         },
         created(){
-            console.log('created');
             axios.get('/api/v1/location')
                 .then((res) => {
                     const loc = res.data;
-                    console.log(res.data);
                     this.locations=loc;
                 })
                 .catch((err) => {

@@ -210,11 +210,9 @@
             }
         },
         created(){
-            console.log('created');
             axios.get('/api/v1/location')
                 .then((res) => {
                     const loc = res.data;
-                    console.log(res.data);
                     this.locations=loc;
                 })
                 .catch((err) => {

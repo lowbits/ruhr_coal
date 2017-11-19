@@ -14762,10 +14762,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        console.log('created');
         axios.get('/api/v1/location').then(function (res) {
             var loc = res.data;
-            console.log(res.data);
             _this.locations = loc;
         }).catch(function (err) {
             console.error('Error in App.vue. AJAX failed.');
@@ -15711,6 +15709,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -15728,7 +15742,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 person_count: 1,
                 is_public: true,
                 category: 'Führung',
-                date: '2017-11-17'
+                date: '2017-11-17',
+                rhythm: 'einmalig',
+                min_person_count: 1,
+                max_person_count: 1
             },
             locations: [{
                 title: 'Duisburg'
@@ -15770,7 +15787,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             console.log(this.form);
-            axios.post('/api/v1/gactivity', this.form).then(function (res) {}).catch(function (err) {
+            /*
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('location_id');
+            $table->string('category')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->integer('max_person_count')->nullable();
+            $table->integer('min_person_count')->nullable();
+            $table->boolean('is_public')->nullable();
+            $table->string('rhythm')->nullable();
+            $table->dateTime('date')->nullable();
+              */
+            axios.post('/api/v1/gactivity', {
+                title: this.form.title,
+                description: this.form.description,
+                user_id: this.form.user_id,
+                location_id: this.form.location_id,
+                category: this.form.category,
+                price: this.form.price,
+                min_person_count: this.form.min_person_count,
+                max_person_count: this.form.max_person_count,
+                is_public: this.form.is_public,
+                rhythm: this.form.rhythm,
+                date: this.form.date
+            }).then(function (res) {}).catch(function (err) {
                 console.error('Error in App.vue. AJAX failed.');
                 new Error(err);
             });
@@ -15779,10 +15822,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        console.log('created');
         axios.get('/api/v1/location').then(function (res) {
             var loc = res.data;
-            console.log(res.data);
             _this.locations = loc;
         }).catch(function (err) {
             console.error('Error in App.vue. AJAX failed.');
@@ -16145,8 +16186,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.weather,
-                          expression: "form.weather"
+                          value: _vm.form.rhythm,
+                          expression: "form.rhythm"
                         }
                       ],
                       staticClass: "is-danger",
@@ -16163,7 +16204,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "weather",
+                            "rhythm",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -16172,11 +16213,11 @@ var render = function() {
                       }
                     },
                     [
-                      _c("option", [_vm._v("ab 42°C mit Sandalen und Socken")]),
+                      _c("option", [_vm._v("einmalig")]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("bei jedem Wetter")]),
+                      _c("option", [_vm._v("wöchentlich")]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("bei trockenem Wetter")])
+                      _c("option", [_vm._v("zweiwöchentlich")])
                     ]
                   ),
                   _vm._v(" "),
@@ -16198,24 +16239,29 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.person_count,
-                      expression: "form.person_count"
+                      value: _vm.form.min_person_count,
+                      expression: "form.min_person_count"
                     }
                   ],
                   staticClass: "input",
                   attrs: {
                     type: "text",
-                    placeholder: "Für wie viele Personen ist deine Aktivität?",
+                    placeholder:
+                      "Für wie viele Personen ist deine Aktivität mindestens?",
                     maxLength: "2",
                     required: ""
                   },
-                  domProps: { value: _vm.form.person_count },
+                  domProps: { value: _vm.form.min_person_count },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "person_count", $event.target.value)
+                      _vm.$set(
+                        _vm.form,
+                        "min_person_count",
+                        $event.target.value
+                      )
                     }
                   }
                 }),
@@ -16228,6 +16274,50 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "field is-horizontal" }, [
           _vm._m(14, false, false),
+          _vm._v(" "),
+          _c("div", { staticClass: "field-body" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "control has-icons-right" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.max_person_count,
+                      expression: "form.max_person_count"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder:
+                      "Für wie viele Personen ist deine Aktivität maximal?",
+                    maxLength: "2",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.max_person_count },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "max_person_count",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(15, false, false)
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field is-horizontal" }, [
+          _vm._m(16, false, false),
           _vm._v(" "),
           _c("div", { staticClass: "field-body" }, [
             _c("div", { staticClass: "field" }, [
@@ -16275,14 +16365,14 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(15, false, false)
+                  _vm._m(17, false, false)
                 ])
               ])
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(16, false, false)
+        _vm._m(18, false, false)
       ]
     )
   ])
@@ -16407,7 +16497,25 @@ var staticRenderFns = [
     return _c(
       "div",
       { staticClass: "field-label is-normal column is-one-quarter" },
-      [_c("label", { staticClass: "label" }, [_vm._v("Personenzahl")])]
+      [_c("label", { staticClass: "label" }, [_vm._v("Personen min.")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small is-right" }, [
+      _c("i", { staticClass: "fa fa-users" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "field-label is-normal column is-one-quarter" },
+      [_c("label", { staticClass: "label" }, [_vm._v("Personen max.")])]
     )
   },
   function() {
