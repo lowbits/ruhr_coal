@@ -83,9 +83,7 @@
             const value = this.filter[key];
 
             if (typeof value === 'string') {
-              this.filter[key] = '';
-            } else if (typeof value === 'number') {
-              this.filter[key] = 1;
+              key === 'person_count' ? this.filter[key] = '1' : this.filter[key] = '';
             }
           }
         }
