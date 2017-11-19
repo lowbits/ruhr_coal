@@ -7,6 +7,7 @@
                 <activityCard v-for="activity in results" :key="`${activity.id}-${activity.modeltype}`" :activity="activity" v-if="results.length > 0" />
                 <h2 class="title is-size-3" v-if="results.length === 0 && filterWasUsed">Deine Suche ergab leider keine Ergebnisse.</h2>
             </div>
+            <addActivityButton></addActivityButton>
         </section>
     </div>
 </template>
@@ -15,6 +16,7 @@
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
     import activityCard from './activity/activity_card.vue';
+    import addActivityButton from './activity/addNewActivityButton.vue';
     import filters from './Filters.vue';
 
     export default {
@@ -25,7 +27,8 @@
         },
         components: {
             activityCard,
-            filters
+            filters,
+            addActivityButton
         },
         methods: {
             ...mapActions({
