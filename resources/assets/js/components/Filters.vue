@@ -38,15 +38,19 @@
           <span class="has-text-white">bis</span>
         </div>
         <div class="column is-5">
-          <input class="input" type="number" @keyup="filterResults" v-model="filter.priceMax" placeholder="1000">
+          <input class="input" type="number" @keyup="filterResults" v-model="filter.priceMax" placeholder="50">
         </div>
       </div>
     </div>
 
     <div class="field">
       <h3 class="title is-size-4">Personenanzahl</h3>
-      <input type="range" min="1" max="10" @change="filterResults" v-model="filter.person_count">
+      <input type="range" min="1" max="10" @change="filterResults" @input="filterResults" v-model="filter.person_count">
       <span class="currentCount" :style="personCountPosition">{{ filter.person_count }}</span>
+    </div>
+
+    <div class="field">
+      <button class="button is-white is-block" @click="resetAllFilter">Alle Filter zurücksetzen</button>
     </div>
   </aside>
 </template>
@@ -71,13 +75,27 @@
       ...mapActions({
           setFilterResults: 'setFilterResults',
       }),
+      resetAllFilter() {
+        console.log('reset');
+        for (const key in this.filter) {
+          if (this.filter.hasOwnProperty(key)) {
+            const value = this.filter[key];
+
+            if (typeof value === 'string') {
+              this.filter[key] = '';
+            } else if (typeof value === 'number') {
+              this.filter[key] = 1;
+            }
+          }
+        }
+      },
       filterResults() {
         let results = this.activities.filter((activity) => {
           // Values to test
           const activityTitle = activity.title.toLowerCase();
           const activityDescription = activity.description.toLowerCase();
           const activityPrice = activity.price;
-          const activityWeather = activity.weather.toLowerCase();
+          const activityWeather = activity.weather ? activity.weather.toLowerCase() : '';
           const activityPersonCount = activity.person_count;
           const locationCity = activity.location.city.toLowerCase();
 
@@ -182,6 +200,10 @@
     left: 0;
     padding: 5px;
     background-color: #fff;
+  }
+
+  .button {
+    width: 100%;
   }
 
 input[type=range] {
