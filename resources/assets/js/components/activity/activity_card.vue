@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card" v-on:click="toggleModal">
             <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'">Geführte Route</span>
             <div class="card-content">
                 <div class="activityImg" :style="{ backgroundImage: 'url(' + activity.location.photo_url + ')' }"></div>
@@ -8,7 +8,7 @@
                 <div class="city"><span class="cardLabel">Stadt</span><br/>{{ activity.location.city }}</div>
                 <div class="category"><span class="cardLabel">Kategorie</span><br/>{{ activity.category }}</div>
                 <div class="price"><span class="cardLabel">Preis</span><br/>{{ (activity.price === null) ? 'Kostenlos' : activity.price + ' €' }}</div>
-                <div class="detailButton" v-on:click="toggleModal"><span class="fa fa-chevron-right"></span></div>
+                <div class="detailButton"><span class="fa fa-chevron-right"></span></div>
             </div>
         </div>
         <div class="notification" v-bind:class="[(notificationIsActive) ? 'is-active' : '', (notification.type == 'anmelden') ? 'is-success' : 'is-danger']">
@@ -170,6 +170,12 @@
 
     .card{
         margin-bottom: 30px;
+        transition: box-shadow .5s ease;
+
+        &:hover{
+            box-shadow: 0 6px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+            transition: box-shadow .5s ease;
+        }
     }
 
     .table {
@@ -184,6 +190,10 @@
 
     .modal-card-title {
         color: #fff;
+    }
+
+    .card{
+        cursor: pointer;
     }
 
     .card-content{
