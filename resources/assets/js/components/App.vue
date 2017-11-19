@@ -54,3 +54,15 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+.main {
+    display: flex;
+}
+
+.section {
+    flex: 1;
+    height: calc(100vh - 52px);
+    overflow: auto;
+}
+</style>

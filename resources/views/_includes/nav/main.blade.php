@@ -6,7 +6,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
                         <img src="{{asset('img/logo_ruhr_coal.png')}}" alt="Bulma: a modern CSS framework based on Flexbox" width="" height="">
-                        <span class="title">Ruhr Kohle</span>
+                        <span class="title">Pottivity</span>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroA">
                   <span></span>
@@ -16,7 +16,7 @@
                 </div>
                 <div id="navbarMenuHeroA" class="navbar-menu">
                     <div class="navbar-end">
-                        <a class="navbar-item is-active">
+                        <a href="/" class="navbar-item is-active">
                             Home
                         </a>
 
@@ -36,6 +36,15 @@
                                 </div>
                                 <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                                     <div class="dropdown-content">
+                                     <div class="dropdown-item">
+                                            <a href="{{route('me')}}">
+                                            <span class="icon">
+                                                <i class="fa fa-fw fa-user m-r-5"></i>
+                                             </span>
+                                                Profil
+                                            </a>
+
+                                        </div>
                                         <div class="dropdown-item">
                                             <a href="{{route('logout')}}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

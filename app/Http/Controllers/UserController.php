@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    function show(User $user)
+    public function __construct()
     {
-        return $user->load('activities');
+
+    }
+
+    function show(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        return view('user.index', ['user' => $user->load('activities', 'gactivities')]);
+
     }
 }
