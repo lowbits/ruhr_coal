@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="card">
+            <span class="modeltypeTag" v-if="activity.modeltype == 'gactivity'">Geführte Route</span>
             <div class="card-content">
                 <div class="activityImg" :style="{ backgroundImage: 'url(' + activity.location.photo_url + ')' }"></div>
                 <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
@@ -78,7 +79,7 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" v-on:click="participateActivity">An dieser Activity teilnehmen</button>
+                    <button class="button is-success" v-on:click="participateActivity" v-if="activity.modeltype == 'gactivity'">An dieser Activity teilnehmen</button>
                     <button class="button" v-on:click="toggleModal">Cancel</button>
                 </footer>
             </div>
@@ -170,6 +171,18 @@
                 width: auto;
                 min-width: 20px;
                 max-width: 20px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 30px;
+
+                &:hover{
+                    background-color: $grey-light;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -219,5 +232,16 @@
         &.rated{
             opacity: 1;
         }
+    }
+
+    .modeltypeTag{
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $primary-light;
+        color: #fff;
+        padding: 2px 10px;
+
+        z-index: 1;
     }
 </style>
