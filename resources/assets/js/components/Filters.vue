@@ -29,6 +29,24 @@
     </div>
 
     <div class="field">
+      <h3 class="title is-size-5">Typ der Aktivität</h3>
+      <div class="control">
+        <label class="radio is-size-6">
+          <input type="radio" name="type" value="egal" v-model="filter.type" @change="filterResults" checked="checked">
+          Egal
+        </label>
+        <label class="radio is-size-6">
+          <input type="radio" name="type" value="gactivity" v-model="filter.type" @change="filterResults">
+          Geführte Aktivität
+        </label>
+        <label class="radio is-size-6">
+          <input type="radio" name="type" value="activity" v-model="filter.type" @change="filterResults">
+          Allgemeine Aktivität
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
       <h3 class="title is-size-5">Preis</h3>
       <div class="columns is-price">
         <div class="column is-5">
@@ -67,6 +85,7 @@
           priceMin: '',
           priceMax: '',
           weather: '',
+          type: '',
           person_count: 1,
         },
       }
@@ -100,6 +119,7 @@
           const activityPrice = activity.price;
           const activityWeather = activity.weather ? activity.weather.toLowerCase() : '';
           const activityPersonCount = activity.person_count;
+          const activityType = activity.modeltype;
           const locationCity = activity.location.city.toLowerCase();
 
           // Filter values
@@ -109,6 +129,7 @@
           const filterPriceMax = Number(this.filter.priceMax);
           const filterWeather = this.filter.weather;
           const filterPersonCount = this.filter.person_count;
+          const filterType = this.filter.type;
 
           // Title & Description
           if (!((activityTitle.includes(filterTitle)) || (activityDescription.includes(filterTitle))) && filterTitle.length > 0) {
@@ -131,6 +152,13 @@
           // Weather-filter
           if (!(filterWeather === 'egal')) {
             if (!activityWeather.includes(filterWeather)) {
+              return false;
+            }
+          }
+
+          // Type-filter
+          if (!(filterType === 'egal')) {
+            if (!(activityType === filterType)) {
               return false;
             }
           }
@@ -199,11 +227,11 @@
 
   .field {
     + .field {
-      margin-top: 30px;
+      margin-top: 25px;
     }
 
     &:not(:last-child) {
-      padding-bottom: 30px;
+      padding-bottom: 25px;
       border-bottom: 1px solid rgba(#fff, .1);
     }
   }
