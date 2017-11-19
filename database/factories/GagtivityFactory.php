@@ -5,8 +5,20 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Carbon;
 
 $factory->define(Gactivity::class, function (Faker $faker) {
+
+    $titles = collect([
+        'Rundgang über das Gelände von Schacht X',
+        'Tour über das Gelände die Villa Hügel',
+        'Geschichte der Gartenstadt Welheim',
+        'Kokereien früher und heute',
+        'Der Landschaftspark Nord im Laufe der Zeit',
+        'Stadtteilführung durch die Dortmunder Nordstadt',
+        'Begehung des Tetraeders mit Blick auf die Kokerei Prosper',
+        'Wanderung auf dem Kreuzweg der Halde Haniel'
+    ]);
+
     return [
-        'title' => $faker->sentence(3),
+        'title' => $titles->random(),
         'description' => $faker->sentence(),
         'user_id' => factory('App\User')->create()->id,
         'price' => random_int(2, 50),
