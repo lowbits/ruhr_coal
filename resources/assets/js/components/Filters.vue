@@ -71,6 +71,7 @@
         },
       }
     },
+    props: ['setFilterWasUsed'],
     methods: {
       ...mapActions({
           setFilterResults: 'setFilterResults',
@@ -82,15 +83,15 @@
             const value = this.filter[key];
 
             if (typeof value === 'string') {
-              this.filter[key] = '';
-            } else if (typeof value === 'number') {
-              this.filter[key] = 1;
+              key === 'person_count' ? this.filter[key] = '1' : this.filter[key] = '';
             }
           }
         }
       },
       filterResults() {
         let results = this.activities.filter((activity) => {
+          this.setFilterWasUsed();
+
           // Values to test
           const activityTitle = activity.title.toLowerCase();
           const activityDescription = activity.description.toLowerCase();
@@ -293,5 +294,3 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 </style>
-
-

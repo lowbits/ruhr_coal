@@ -1,9 +1,11 @@
 <template>
     <div class="main">
-        <filters></filters>
+        <filters :setFilterWasUsed="setFilterWasUsed"></filters>
         <section class="section">
             <div class="container is-fluid">
-                <activityCard v-for="activity in results" :key="activity.id" :activity="activity"></activityCard>
+                <h2 class="title is-size-3" v-if="results.length === 0 && !filterWasUsed">Aktivitäten werden geladen...</h2>
+                <activityCard v-for="activity in results" :key="`${activity.id}-${activity.modeltype}`" :activity="activity" v-if="results.length > 0" />
+                <h2 class="title is-size-3" v-if="results.length === 0 && filterWasUsed">Deine Suche ergab leider keine Ergebnisse.</h2>
             </div>
         </section>
     </div>
@@ -16,6 +18,11 @@
     import filters from './Filters.vue';
 
     export default {
+        data() {
+            return {
+                filterWasUsed: false,
+            }
+        },
         components: {
             activityCard,
             filters
@@ -24,7 +31,10 @@
             ...mapActions({
                 setActivities: 'setActivities',
                 setFilterResults: 'setFilterResults',
-            })
+            }),
+            setFilterWasUsed() {
+                this.filterWasUsed = true;
+            }
         },
         computed: {
             ...mapGetters({
@@ -51,6 +61,7 @@
 </script>
 
 <style lang="scss" scoped>
+
 .main {
     display: flex;
 }
