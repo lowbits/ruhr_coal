@@ -196,7 +196,7 @@
             <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                     <!--v-on:submit="this.send"-->
-                    <input type="submit" class="button" value="Aktivität erstellen">
+                    <input type="submit" class="button is-success" value="Aktivität erstellen">
                 </p>
             </div>
         </form>
