@@ -8,6 +8,8 @@ class Gactivity extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['modeltype'];
+
     public function participants(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }
@@ -18,5 +20,8 @@ class Gactivity extends Model
 
     }
 
-
+    public function getModeltypeAttribute()
+    {
+        return $this->attributes['modeltype'] = 'gactivity';
+    }
 }

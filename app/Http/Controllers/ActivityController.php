@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Gactivity;
 use App\Location;
 use Illuminate\Http\Request;
 
@@ -89,5 +90,17 @@ class ActivityController extends Controller
         $activites = Activity::latest()->with(['location', 'user']);
 
         return $activites->get();
+    }
+
+    public function allactivities()
+    {
+        $act= Activity::with(['user', 'location'])->get();
+        $gact = Gactivity::with(['participants', 'location'])->get();
+
+        $collection = collect([$act, $gact])
+            ->flatten()
+            ->shuffle();
+
+        return $collection;
     }
 }
