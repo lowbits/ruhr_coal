@@ -81,4 +81,12 @@
             background-color: #00a58c;
         }
     }
+
+
+    .modal-card-head{
+        background-color: #406C80;
+    }
+    .modal-card-title{
+        color: #fff;
+    }
 </style>
