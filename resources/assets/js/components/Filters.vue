@@ -102,7 +102,14 @@
             const value = this.filter[key];
 
             if (typeof value === 'string') {
-              key === 'person_count' ? this.filter[key] = '1' : this.filter[key] = '';
+              if (key === 'person_count') {
+                this.filter[key] = '1'
+              } else if (key === 'type' || key === 'weather') {
+                this.filter[key] = 'egal'
+              } else {
+                this.filter[key] = ''
+              }
+              // key === 'person_count' ? this.filter[key] = '1' : this.filter[key] = '';
             }
           }
         }
