@@ -13,6 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
+    <script>
+        window.Application = {!! json_encode([
+            'user' => auth()->user(),
+            'signedIn' => auth()->check()
+        ])!!};
+    </script>
 </head>
 <body>
 
