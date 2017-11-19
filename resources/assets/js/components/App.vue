@@ -11,6 +11,7 @@
                     <h3 class="title is-size-4">Versuch' es einfach nochmal!</h3>
                 </div>
             </div>
+            <addActivityButton></addActivityButton>
         </section>
     </div>
 </template>
@@ -19,6 +20,7 @@
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
     import activityCard from './activity/activity_card.vue';
+    import addActivityButton from './activity/addNewActivityButton.vue';
     import filters from './Filters.vue';
 
     export default {
@@ -29,7 +31,8 @@
         },
         components: {
             activityCard,
-            filters
+            filters,
+            addActivityButton
         },
         methods: {
             ...mapActions({
