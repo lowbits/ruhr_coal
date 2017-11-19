@@ -201,7 +201,19 @@
                     }
                 }
                 console.log(this.form);
-                axios.post('/api/v1/activity', this.form).then((res) => {
+                axios.post('/api/v1/activity', {
+                    title: this.form.title,
+                    description: this.form.description,
+                    weather: this.form.weather,
+                    user_id: this.form.user_id,
+                    location_id: this.form.location_id,
+                    opening_hours: this.form.opening_hours,
+                    category: this.form.category,
+                    price: this.form.price,
+                    student_discount: this.form.student_discount,
+                    person_count: this.form.person_count,
+                    is_public: this.form.is_public
+                }).then((res) => {
                 })
                     .catch((err) => {
                         console.error('Error in App.vue. AJAX failed.');

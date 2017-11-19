@@ -14053,6 +14053,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14061,17 +14077,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     import axios from 'axios';
     import { mapActions, mapGetters } from 'vuex';
     import activityCard from './activity/activity_card.vue';
+    import addActivityButton from './activities/addNewActivityButton.vue';
     import filters from './Filters.vue';
     export default {
+    data() {
+        return {
+            filterWasUsed: false,
+        }
+    },
     components: {
         activityCard,
-        filters
+        filters,
+        addActivityButton
     },
     methods: {
         ...mapActions({
             setActivities: 'setActivities',
             setFilterResults: 'setFilterResults',
-        })
+        }),
+        setFilterWasUsed() {
+            this.filterWasUsed = true;
+        }
     },
     computed: {
         ...mapGetters({
@@ -14081,7 +14107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created() {
         const vm = this;
-         axios.get('http://localhost:8000/api/v1/activity')
+         axios.get('http://localhost:8000/api/v1/allactivities')
             .then((res) => {
                 const activities = res.data;
                  vm.setActivities(activities);
@@ -14757,7 +14783,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             console.log(this.form);
-            axios.post('/api/v1/activity', this.form).then(function (res) {}).catch(function (err) {
+            axios.post('/api/v1/activity', {
+                title: this.form.title,
+                description: this.form.description,
+                weather: this.form.weather,
+                user_id: this.form.user_id,
+                location_id: this.form.location_id,
+                opening_hours: this.form.opening_hours,
+                category: this.form.category,
+                price: this.form.price,
+                student_discount: this.form.student_discount,
+                person_count: this.form.person_count,
+                is_public: this.form.is_public
+            }).then(function (res) {}).catch(function (err) {
                 console.error('Error in App.vue. AJAX failed.');
                 new Error(err);
             });
@@ -15433,7 +15471,7 @@ exports = module.exports = __webpack_require__(42)(undefined);
 
 
 // module
-exports.push([module.i, "\n.main[data-v-8142f38c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.section[data-v-8142f38c] {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  height: calc(100vh - 52px);\n  overflow: auto;\n}\n", ""]);
+exports.push([module.i, "\n.main[data-v-8142f38c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.section[data-v-8142f38c] {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  height: calc(100vh - 52px);\n  overflow: auto;\n  background: #f7fdff;\n}\n", ""]);
 
 // exports
 
@@ -15446,7 +15484,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("create-gactivity")], 1)
+  return _c("div", [_c("create-activity")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
