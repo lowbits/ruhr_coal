@@ -1,27 +1,27 @@
 <template>
   <aside>
     <div class="field">
-      <h3 class="title is-size-4">Standort</h3>
+      <h3 class="title is-size-5">Standort</h3>
       <input class="input" type="text" @keyup="filterResults" v-model="filter.location" placeholder="Stadt eingeben">
     </div>
 
     <div class="field">
-      <h3 class="title is-size-4">Titel</h3>
+      <h3 class="title is-size-5">Titel</h3>
       <input class="input" type="text" @keyup="filterResults" v-model="filter.title" placeholder="Titel suchen">
     </div>
 
     <div class="field">
-      <h3 class="title is-size-4">Wetter</h3>
+      <h3 class="title is-size-5">Wetter</h3>
       <div class="control">
-        <label class="radio has-text-white is-size-6">
-          <input type="radio" name="answer" value="egal" v-model="filter.weather" @change="filterResults" checked>
+        <label class="radio is-size-6" :class="{'is-active': filter.weather == 'egal'}">
+          <input type="radio" name="answer" value="egal" v-model="filter.weather" @change="filterResults" checked="checked">
           Egal
         </label>
-        <label class="radio has-text-white is-size-6">
+        <label class="radio is-size-6" :class="{'is-active': filter.weather == 'trocken'}">
           <input type="radio" name="answer" value="trocken" v-model="filter.weather" @change="filterResults">
           Trocken
         </label>
-        <label class="radio has-text-white is-size-6">
+        <label class="radio is-size-6" :class="{'is-active': filter.weather == '42°'}">
           <input type="radio" name="answer" value="42°" v-model="filter.weather" @change="filterResults">
           Sommer
         </label>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="field">
-      <h3 class="title is-size-4">Preis</h3>
+      <h3 class="title is-size-5">Preis</h3>
       <div class="columns is-price">
         <div class="column is-5">
           <input class="input" type="number" @keyup="filterResults" v-model="filter.priceMin" placeholder="0">
@@ -44,13 +44,13 @@
     </div>
 
     <div class="field">
-      <h3 class="title is-size-4">Personenanzahl</h3>
+      <h3 class="title is-size-5">Personenanzahl</h3>
       <input type="range" min="1" max="10" @change="filterResults" @input="filterResults" v-model="filter.person_count">
       <span class="currentCount" :style="personCountPosition">{{ filter.person_count }}</span>
     </div>
 
-    <div class="field">
-      <button class="button is-white is-block" @click="resetAllFilter">Alle Filter zurücksetzen</button>
+    <div class="field is-reset">
+      <button class="button is-primary is-block is-outlined" @click="resetAllFilter">Alle Filter zurücksetzen</button>
     </div>
   </aside>
 </template>
@@ -164,27 +164,48 @@
   @import '../../sass/_variables.scss';
 
   aside {
+    position: relative;
     height: calc(100vh - 52px);
     width: 350px;
-    padding: 20px;
+    padding: 30px;
     background: $primary-light;
+  }
+
+  .is-reset {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
   }
 
   .title {
     color: #fff;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .input {
     border-radius: 0;
-    border: none;
+    border: 1px solid #fff;
     height: 45px;
     padding-left: 15px;
+    background: transparent;
+    color: #fff;
+
+    &::placeholder {
+      color: rgba(#fff, .5);
+    }
   }
 
-  .field + .field {
-    margin-top: 30px;
+  .field {
+    + .field {
+      margin-top: 30px;
+    }
+
+    &:not(:last-child) {
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(#fff, .1);
+    }
   }
 
   .is-price {
@@ -203,10 +224,27 @@
     left: 0;
     padding: 5px;
     background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(#000, .16);
   }
 
   .button {
     width: 100%;
+  }
+
+  .radio  {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 10px;
+    color: rgba(#fff, .6);
+
+    &.is-active {
+      color: #fff;
+    }
+  }
+
+  .control {
+    margin-top: 20px;
   }
 
 input[type=range] {

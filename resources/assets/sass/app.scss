@@ -22,3 +22,10 @@ body {
 .navbar .container.is-fluid {
   margin-left: 15px;
 }
+
+.hero.is-dark a.navbar-item {
+  &.is-active,
+  &:hover {
+    background-color: rgba(#fff, .1);
+  }
+}

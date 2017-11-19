@@ -3,9 +3,13 @@
         <filters :setFilterWasUsed="setFilterWasUsed"></filters>
         <section class="section">
             <div class="container is-fluid">
-                <h2 class="title is-size-3" v-if="results.length === 0 && !filterWasUsed">Aktivitäten werden geladen...</h2>
+                <h2 class="title is-size-3 has-text-centered" v-if="results.length === 0 && !filterWasUsed">Aktivitäten werden geladen...</h2>
                 <activityCard v-for="activity in results" :key="`${activity.id}-${activity.modeltype}`" :activity="activity" v-if="results.length > 0" />
-                <h2 class="title is-size-3" v-if="results.length === 0 && filterWasUsed">Deine Suche ergab leider keine Ergebnisse.</h2>
+                <div class="has-text-centered" v-if="results.length === 0 && filterWasUsed">
+                    <h2 class="title is-size-3">Deine Suche ergab leider keine Ergebnisse.</h2>
+                    <img src="/img/sad.gif">
+                    <h3 class="title is-size-4">Versuch' es einfach nochmal!</h3>
+                </div>
             </div>
         </section>
     </div>
@@ -70,5 +74,6 @@
     flex: 1;
     height: calc(100vh - 52px);
     overflow: auto;
+    background: #f7fdff;
 }
 </style>

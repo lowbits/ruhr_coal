@@ -14518,3 +14518,8 @@ body {
   margin-left: 15px;
 }
 
+.hero.is-dark a.navbar-item.is-active,
+.hero.is-dark a.navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
