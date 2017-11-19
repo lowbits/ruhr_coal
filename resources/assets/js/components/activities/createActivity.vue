@@ -1,6 +1,5 @@
 <template>
     <div id="form_create" class="form">
-        <h1>Aktivität erstellen</h1>
         <form v-on:submit.prevent="send">
             <!--Title-->
             <div class="field is-horizontal">
@@ -153,11 +152,6 @@
                     <!--v-on:submit="this.send"-->
                     <input type="submit" class="button" value="Aktivität erstellen">
                 </p>
-                <p class="control">
-                    <a class="button is-light">
-                        Abbrechen
-                    </a>
-                </p>
             </div>
         </form>
     </div>
@@ -201,12 +195,40 @@
                     }
                 }
                 console.log(this.form);
-                axios.post('/api/v1/activity', this.form).then((res) => {
+                axios.post('/api/v1/activity', {
+                    title: this.form.title,
+                    description: this.form.description,
+                    weather: this.form.weather,
+                    user_id: this.form.user_id,
+                    location_id: this.form.location_id,
+                    opening_hours: this.form.opening_hours,
+                    category: this.form.category,
+                    price: this.form.price,
+                    student_discount: this.form.student_discount,
+                    person_count: this.form.person_count,
+                    is_public: this.form.is_public
                 })
-                    .catch((err) => {
-                        console.error('Error in App.vue. AJAX failed.');
-                        new Error(err);
-                    })
+                .then((res) => {
+                    this.form = {
+                        title: '',
+                        description: 'aaf',
+                        weather: 'ab 42°C mit Sandalen und Socken',
+                        user_id: 1,
+                        opening_hours_from: '20:00',
+                        opening_hours_to: '22:00',
+                        price: 1,
+                        student_discount: false,
+                        location: '',
+                        location_id: 1,
+                        person_count: 1,
+                        is_public: true,
+                        category: 'Essen & Trinken',
+                    }
+                })
+                .catch((err) => {
+                    console.error('Error in App.vue. AJAX failed.');
+                    new Error(err);
+                })
             }
         },
         created(){

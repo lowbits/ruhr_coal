@@ -7,7 +7,8 @@
             <div class="modal-background" v-on:click="toggleModal"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Erstellen</p>
+                    <p class="modal-card-title" v-if="activeCreateState == 'activity'">Activity erstellen</p>
+                    <p class="modal-card-title" v-else>Geführte Activity erstellen</p>
                     <button class="delete" aria-label="close" v-on:click="toggleModal"></button>
                 </header>
                 <section class="modal-card-body">
@@ -18,7 +19,7 @@
                     <!--TODO: activity participated ins Objekt eintragen um mich auch wieder abzumelden und im if ändern -->
                     <button class="button" v-on:click="changeCreateState('activity')">Activity hinzufügen</button>
                     <button class="button" v-on:click="changeCreateState('gActivity')">Geführte Activity hinzufügen</button>
-                    <button class="button" v-on:click="toggleModal">Cancel</button>
+                    <button class="button" v-on:click="toggleModal">Abbrechen</button>
                 </footer>
             </div>
         </div>
@@ -45,11 +46,11 @@
             toggleModal() {
                 this.modalIsActive = !this.modalIsActive;
             },
-            changeCreateState() {
-                if(this.activeCreateState == 'activity'){
-                    this.activeCreateState = 'gActivity'
-                }else {
+            changeCreateState(state) {
+                if(state == 'activity') {
                     this.activeCreateState = 'activity'
+                }else{
+                    this.activeCreateState = 'gActivity'
                 }
             }
         }
@@ -69,6 +70,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
         span{
             color: #fff;
@@ -79,5 +81,13 @@
             cursor: pointer;
             background-color: #00a58c;
         }
+    }
+
+
+    .modal-card-head{
+        background-color: #406C80;
+    }
+    .modal-card-title{
+        color: #fff;
     }
 </style>

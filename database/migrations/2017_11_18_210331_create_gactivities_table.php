@@ -17,6 +17,7 @@ class CreateGactivitiesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description')->nullable();
+            $table->text('weather')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('location_id');
             $table->string('category')->nullable();

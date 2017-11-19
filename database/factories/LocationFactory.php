@@ -15,16 +15,20 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Location::class, function (Faker $faker) {
+    $cities = collect([
+        'Bochum', 'Bottrop', 'Dortmund', 'Duisburg','Essen', 'Gelsenkirchen',
+        'Recklinghausen' , 'Mülheim an der Ruhr', 'Oberhausen'
+    ]);
 
     return [
-        'title' => $faker->word,
-        'description' => $faker->sentence(),
+        'title' => $faker->sentence(4),
+        'description' => $faker->sentence(10),
         'lat' => $faker->latitude,
         'lng' => $faker->longitude,
         'type' => $faker->word,
         'indoor' => random_int(0, 1),
         'outdoor' => random_int(0, 1),
-        'city' => $faker->city,
+        'city' => $cities->random(),
         'zip' => $faker->postcode,
         'adress' => $faker->address,
         'url' => $faker->url,

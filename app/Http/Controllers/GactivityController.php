@@ -21,8 +21,6 @@ class GactivityController extends Controller
         return $gactivity;
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,8 +50,6 @@ class GactivityController extends Controller
     {
         return $gactivity->load(['participants', 'location']);
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -86,14 +82,14 @@ class GactivityController extends Controller
 
     public function participate(Gactivity $gactivity)
     {
-        $gactivity->participants()->attach(1);
+        $gactivity->participants()->attach(auth()->id());
 
         return response()->json(['successs', 'success']);
     }
 
     public function unparticipate(Gactivity $gactivity)
     {
-        $gactivity->participants()->detach(1);
+        $gactivity->participants()->detach(auth()->id());
 
         return response()->json(['success', 'success']);
     }

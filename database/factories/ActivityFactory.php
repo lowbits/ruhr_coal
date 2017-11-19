@@ -15,6 +15,10 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Activity::class, function (Faker $faker) {
+    $categories = collect([
+        'Spaziergang', 'Aussichtspunkt', 'fotografieren', 'Fahrrad fahren', 'schwimmen',
+        'joggen', 'Picknick', 'Sportplatz'
+    ]);
 
     return [
         'title' => $faker->sentence(3),
@@ -22,11 +26,11 @@ $factory->define(Activity::class, function (Faker $faker) {
         'weather' => collect(['bei trockenem Wetter', 'bei jedem Wetter', 'ab 42°C mit Sandalen und Socken'])->random(),
         'user_id' => factory('App\User')->create()->id,
         'opening_hours' => 'von 10:00 Uhr – 19:00 Uhr',
-        'price' => mt_rand() / mt_getrandmax() * random_int(10, 50),
+        'price' => random_int(5, 30),
         'student_discount' => random_int(0,1),
         'location_id' => factory('App\Location')->create()->id,
         'person_count' => random_int(1, 10),
         'is_public' => random_int(0, 1),
-        'category' => $faker->word
+        'category' => $categories->random()
     ];
 });
