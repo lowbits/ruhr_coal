@@ -16,6 +16,9 @@ $factory->define(Gactivity::class, function (Faker $faker) {
         'is_public' => random_int(0, 1),
         'rhythm' => collect(['wöchentlich', 'einmalig', 'zweiwöchentlich'])->random(),
         'date' => Carbon::now()->addDay(10),
-        'category' => $faker->word
+        'category' => $faker->word,
+        'weather' => collect([
+            'bei trockenem Wetter', 'bei jedem Wetter', 'ab 42°C mit Sandalen und Socken'
+        ])->random(),
     ];
 });
