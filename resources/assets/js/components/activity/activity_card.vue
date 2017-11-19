@@ -1,14 +1,90 @@
 <template>
-    <div class="card">
-        <div class="card-content">
-            <div class="activityImg"></div>
-            <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
-            <div class="city"><span class="cardLabel">Stadt</span><br/>{{ activity.location.city }}</div>
-            <div class="category"><span class="cardLabel">Kategorie</span><br/>{{ activity.category }}</div>
-            <div class="price"><span class="cardLabel">Preis</span><br/>{{ (activity.price === null) ? 'Kostenlos' : activity.price }}</div>
-            <div class="detailButton"><span class="fa fa-chevron-right"></span></div>
+    <div>
+        <div class="card">
+            <div class="card-content">
+                <div class="activityImg" :style="{ backgroundImage: 'url(' + activity.location.photo_url + ')' }"></div>
+                <div class="titleDescription"><h4 class="title is-4">{{ activity.title }}</h4><h6 class="subtitle is-6">{{ activity.description }}</h6></div>
+                <div class="city"><span class="cardLabel">Stadt</span><br/>{{ activity.location.city }}</div>
+                <div class="category"><span class="cardLabel">Kategorie</span><br/>{{ activity.category }}</div>
+                <div class="price"><span class="cardLabel">Preis</span><br/>{{ (activity.price === null) ? 'Kostenlos' : activity.price }}</div>
+                <div class="detailButton" v-on:click="toggleModal"><span class="fa fa-chevron-right"></span></div>
+            </div>
+        </div>
+        <div class="notification is-success" v-bind:class="{'is-active': notificationIsActive}">
+            <button class="delete" v-on:click="toggleNotification"></button>
+            Sie nehmen an der Activity {{ activity.title }} teil.
+        </div>
+        <div class="modal" v-bind:class="{ 'is-active': modalIsActive }">
+            <div class="modal-background" v-on:click="toggleModal"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">{{ activity.title }}</p>
+                    <button class="delete" aria-label="close" v-on:click="toggleModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="">
+                        <div class="columns">
+                            <div class="column">
+                                <h5 class="title is-5">Worum gehts?</h5>
+                                <p>{{ activity.description }}</p>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <h5 class="title is-5">Activity Daten</h5>
+                                <table class="table is-fullwidth">
+                                    <tbody>
+                                        <tr>
+                                            <td>Kategorie</td>
+                                            <td>{{ activity.category }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Erstellt von</td>
+                                            <td>{{ activity.user.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Öffnungszeiten</td>
+                                            <td>{{ activity.opening_hours }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Personenanzahl</td>
+                                            <td>{{ activity.person_count }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Studentenrabatt</td>
+                                            <td>{{ (activity.student_discount == 1) ? 'Ja' : 'Nein' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wetter</td>
+                                            <td>{{ activity.weather }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Preis</td>
+                                            <td>{{ activity.price }} €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="column">
+                                <img v-bind:src="activity.location.photo_url" class="image"/>
+                                <h5 class="title is-5">Adresse</h5>
+                                <p>
+                                    {{ activity.location.adress }}<br/>
+                                    {{ activity.location.city }}<br/>
+                                    {{ activity.location.zip }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" v-on:click="participateActivity">An dieser Activity teilnehmen</button>
+                    <button class="button" v-on:click="toggleModal">Cancel</button>
+                </footer>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -19,7 +95,27 @@
         ],
         data() {
             return {
-
+                modalIsActive: false,
+                notificationIsActive: false
+            }
+        },
+        methods: {
+            toggleModal() {
+                this.modalIsActive = !this.modalIsActive;
+            },
+            participateActivity() {
+                this.toggleModal();
+                this.toggleNotification();
+                console.log('participate Activity');
+            },
+            toggleNotification() {
+                if(!this.notificationIsActive) {
+                    setTimeout(this.closeNotification, 3000);
+                }
+                this.notificationIsActive = !this.notificationIsActive;
+            },
+            closeNotification() {
+                this.notificationIsActive = false;
             }
         },
         created() {
@@ -30,6 +126,10 @@
 
 <style lang="scss" scoped>
     @import '../../../sass/variables';
+
+    .image{
+        width: 100%;
+    }
 
     .card{
         margin-bottom: 30px;
@@ -51,6 +151,9 @@
                 background-color: $grey;
                 height: 100px;
                 width: 100px;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                background-size: cover;
             }
 
             &.titleDescription{
@@ -75,5 +178,34 @@
 
     .subtitle{
         color: $grey;
+    }
+
+    .modal-card{
+        width: 1100px;
+    }
+
+    .notification{
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 500px;
+
+        -webkit-transition: opacity .5s ease, visibility 0s ease .5s;
+        -moz-transition: opacity .5s ease, visibility 0s ease .5s;
+        -ms-transition: opacity .5s ease, visibility 0s ease .5s;
+        -o-transition: opacity .5s ease, visibility 0s ease .5s;
+        transition: opacity .5s ease, visibility 0s ease .5s;
+
+        &.is-active{
+            opacity: 1;
+            visibility: visible;
+            -webkit-transition: opacity .5s ease, visibility 0s ease 0s;
+            -moz-transition: opacity .5s ease, visibility 0s ease 0s;
+            -ms-transition: opacity .5s ease, visibility 0s ease 0s;
+            -o-transition: opacity .5s ease, visibility 0s ease 0s;
+            transition: opacity .5s ease, visibility 0s ease 0s;
+        }
     }
 </style>
