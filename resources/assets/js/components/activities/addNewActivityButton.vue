@@ -69,6 +69,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
         span{
             color: #fff;
