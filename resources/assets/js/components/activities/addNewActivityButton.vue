@@ -45,11 +45,11 @@
             toggleModal() {
                 this.modalIsActive = !this.modalIsActive;
             },
-            changeCreateState() {
-                if(this.activeCreateState == 'activity'){
-                    this.activeCreateState = 'gActivity'
-                }else {
+            changeCreateState(state) {
+                if(state == 'activity') {
                     this.activeCreateState = 'activity'
+                }else{
+                    this.activeCreateState = 'gActivity'
                 }
             }
         }
