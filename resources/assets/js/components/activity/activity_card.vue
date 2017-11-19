@@ -19,7 +19,7 @@
             <div class="modal-background" v-on:click="toggleModal"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">{{ activity.title }} <img src="img/logo_ruhr_coal.png" alt="" class="coalRating" v-for="(item, index) in 5" v-bind:class="[((index+1) <= rating) ? 'rated' : '']"></p>
+                    <p class="modal-card-title">{{ activity.title }} </p>
                     <button class="delete" aria-label="close" v-on:click="toggleModal"></button>
                 </header>
                 <section class="modal-card-body">
@@ -29,11 +29,15 @@
                                 <h5 class="title is-5">Worum gehts?</h5>
                                 <p>{{ activity.description }}</p>
                             </div>
+                            <div class="column">
+                                <h5 class="title is-5">Bewertung</h5>
+                                <img src="img/logo_ruhr_coal.png" alt="" class="coalRating" v-for="(item, index) in 5" :key="index" v-bind:class="[((index+1) <= rating) ? 'rated' : '']">
+                            </div>
                         </div>
                         <div class="columns">
                             <div class="column">
                                 <h5 class="title is-5">Activity Daten</h5>
-                                <table class="table is-fullwidth">
+                                <table class="table is-fullwidth is-striped">
                                     <tbody>
                                         <tr>
                                             <td>Kategorie</td>
@@ -67,13 +71,19 @@
                                 </table>
                             </div>
                             <div class="column">
-                                <img v-bind:src="activity.location.photo_url" class="image"/>
-                                <h5 class="title is-5">Adresse</h5>
-                                <p>
-                                    {{ activity.location.adress }}<br/>
-                                    {{ activity.location.city }}<br/>
-                                    {{ activity.location.zip }}
-                                </p>
+                                <div class="columns">
+                                    <div class="column is-4">
+                                        <img v-bind:src="activity.location.photo_url" class="image"/>
+                                    </div>
+                                    <div class="column is-8">
+                                        <h5 class="title is-5">Adresse</h5>
+                                        <p>
+                                            {{ activity.location.adress }}<br/>
+                                            {{ activity.location.city }}<br/>
+                                            {{ activity.location.zip }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +92,7 @@
                     <!--TODO: activity participated ins Objekt eintragen um mich auch wieder abzumelden und im if ändern -->
                     <button class="button is-success" v-on:click="participateActivity" v-if="activity.modeltype == 'gactivity' && !participated">An dieser Activity teilnehmen</button>
                     <button class="button is-danger" v-on:click="unparticipateActivity" v-else-if="activity.modeltype == 'gactivity' && participated">Mich von dieser Activity abmelden</button>
-                    <button class="button" v-on:click="toggleModal">Cancel</button>
+                    <button class="button" v-on:click="toggleModal">Abbrechen</button>
                 </footer>
             </div>
         </div>
@@ -160,6 +170,20 @@
 
     .card{
         margin-bottom: 30px;
+    }
+
+    .table {
+        td:first-child {
+            font-weight: bold;
+        }
+    }
+
+    .modal-card-head {
+        background: $primary-light;
+    }
+
+    .modal-card-title {
+        color: #fff;
     }
 
     .card-content{

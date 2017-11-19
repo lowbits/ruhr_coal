@@ -18,7 +18,7 @@
                     <!--TODO: activity participated ins Objekt eintragen um mich auch wieder abzumelden und im if ändern -->
                     <button class="button" v-on:click="changeCreateState('activity')">Activity hinzufügen</button>
                     <button class="button" v-on:click="changeCreateState('gActivity')">Geführte Activity hinzufügen</button>
-                    <button class="button" v-on:click="toggleModal">Cancel</button>
+                    <button class="button" v-on:click="toggleModal">Abbrechen</button>
                 </footer>
             </div>
         </div>
